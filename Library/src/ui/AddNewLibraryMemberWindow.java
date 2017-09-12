@@ -2,6 +2,7 @@ package ui;
 
 import business.Address;
 import business.ControllerInterface;
+import business.LibraryMember;
 import business.LoginException;
 import business.Person;
 import business.SystemController;
@@ -172,15 +173,11 @@ public class AddNewLibraryMemberWindow extends Stage implements LibWindow {
 
         		try {
 
-        			//c.login(userTextField.getText().trim(), pwBox.getText().trim());
-
-
         			Address add = new Address(streetTextField.getText(), cityTextField.getText(),
 							stateTextField.getText(), zipTextField.getText());
-        			Person per = new Person(firstNameTextField.getText(), lastNameTextField.getText(), telephoneTextField.getText(), add);
-
-
-        			c.addNewMember(memberIdTextField.getText(),per);
+        			LibraryMember per = new LibraryMember(memberIdTextField.getText(), firstNameTextField.getText(),
+        					lastNameTextField.getText(), telephoneTextField.getText(), add);
+        			c.addNewMember(per);
         			messageBar.setFill(Start.Colors.green);
              	    messageBar.setText("Member Created successfuly");
              	    //clearFields();
@@ -219,6 +216,7 @@ public class AddNewLibraryMemberWindow extends Stage implements LibWindow {
 	@Override
 	public boolean isAllowed(Auth x) {
 		// TODO Auto-generated method stub
+		if(accessLevel.equals(x)  || accessLevel.equals(Auth.BOTH)) return true;
 		return true;
 	}
 

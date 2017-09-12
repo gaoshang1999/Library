@@ -67,7 +67,7 @@ public class AllBooksWindow extends Stage implements LibWindow {
 	@Override
 	public boolean isAllowed(Auth x) {
 		// TODO Auto-generated method stub
-		if(accessLevel.equals(x) ) return true;
+		if(accessLevel.equals(x)  || accessLevel.equals(Auth.BOTH)) return true;
 		return false;
 	}
 	@Override
