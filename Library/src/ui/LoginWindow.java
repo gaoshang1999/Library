@@ -3,7 +3,6 @@ package ui;
 import business.ControllerInterface;
 import business.LoginException;
 import business.SystemController;
-import dataaccess.Auth;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -11,8 +10,6 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -25,9 +22,9 @@ import javafx.stage.Stage;
 
 public class LoginWindow extends Stage implements LibWindow {
 	public static final LoginWindow INSTANCE = new LoginWindow();
-
+	
 	private boolean isInitialized = false;
-	private MenuItem mItem=null;
+	
 	public boolean isInitialized() {
 		return isInitialized;
 	}
@@ -40,7 +37,7 @@ public class LoginWindow extends Stage implements LibWindow {
 	}
     private LoginWindow () {}
     public void init() {
-
+        
         GridPane grid = new GridPane();
         grid.setId("top-container");
         grid.setAlignment(Pos.CENTER);
@@ -77,7 +74,7 @@ public class LoginWindow extends Stage implements LibWindow {
         messageBox.setAlignment(Pos.BOTTOM_RIGHT);
         messageBox.getChildren().add(messageBar);;
         grid.add(messageBox, 1, 6);
-
+        
         loginBtn.setOnAction(new EventHandler<ActionEvent>() {
         	@Override
         	public void handle(ActionEvent e) {
@@ -90,14 +87,7 @@ public class LoginWindow extends Stage implements LibWindow {
         			messageBar.setFill(Start.Colors.red);
         			messageBar.setText("Error! " + ex.getMessage());
         		}
-
-
-        		Menu parent = mItem.getParentMenu();
-        		parent.getItems().clear();
-        		parent.getItems().addAll(Start.getAllowedWindows());
-
-        		//mItem.getParentMenu().getItems().addA
-
+        	   
         	}
         });
 
@@ -116,22 +106,8 @@ public class LoginWindow extends Stage implements LibWindow {
         Scene scene = new Scene(grid);
         scene.getStylesheets().add(getClass().getResource("library.css").toExternalForm());
         setScene(scene);
-
+        
     }
-	@Override
-	public boolean isAllowed(Auth x) {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	@Override
-	public void setMenuItem(MenuItem x){
-		mItem = x;
-	}
-
-	@Override
-	public MenuItem getMenuItem(){
-		return mItem;
-	}
-
+	
+	
 }

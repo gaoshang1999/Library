@@ -1,12 +1,12 @@
 package ui;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import business.ControllerInterface;
 import business.SystemController;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -23,6 +23,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+import library.domain.CheckoutTableData;
 
 
 public class Start extends Application {
@@ -44,7 +45,7 @@ public class Start extends Application {
 		AllMembersWindow.INSTANCE,
 		AllBooksWindow.INSTANCE,
 		AddBookCopyWindow.INSTANCE,
-		AddNewLibraryMemberWindow.INSTANCE
+		CheckoutWindow.INSTANCE
 	};
 
 	public static void hideAllWindows() {
@@ -52,19 +53,6 @@ public class Start extends Application {
 		for(Stage st: allWindows) {
 			st.hide();
 		}
-	}
-
-	public static List<MenuItem> getAllowedWindows(){
-		List<MenuItem> allowedWindows = new ArrayList<MenuItem>();
-		LibWindow lw;
-		for (Stage st: allWindows){
-			lw = (LibWindow)st;
-			if(lw.isAllowed(SystemController.currentAuth) == true){
-				allowedWindows.add(lw.getMenuItem());
-			}
-		}
-
-		return allowedWindows;
 	}
 
 
@@ -96,7 +84,7 @@ public class Start extends Application {
 
 		Menu optionsMenu = new Menu("Options");
 		MenuItem login = new MenuItem("Login");
-		LoginWindow.INSTANCE.setMenuItem(login);
+
 		login.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
@@ -110,7 +98,6 @@ public class Start extends Application {
         });
 
 		MenuItem bookIds = new MenuItem("All Book Ids");
-		AllBooksWindow.INSTANCE.setMenuItem(bookIds);
 		bookIds.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
@@ -131,7 +118,6 @@ public class Start extends Application {
 		});
 
 		MenuItem memberIds = new MenuItem("All Member Ids");
-		AllMembersWindow.INSTANCE.setMenuItem(memberIds);
 		memberIds.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
@@ -154,7 +140,6 @@ public class Start extends Application {
 		});
 
 		MenuItem addBookCopy = new MenuItem("Add Book Copy");
-		AddBookCopyWindow.INSTANCE.setMenuItem(addBookCopy);
 		addBookCopy.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
@@ -166,22 +151,24 @@ public class Start extends Application {
 				AddBookCopyWindow.INSTANCE.show();
             }
 		});
-
-		MenuItem addNewLibraryMember = new MenuItem("Add New Library Member");
-		AddNewLibraryMemberWindow.INSTANCE.setMenuItem(addNewLibraryMember);
-		addNewLibraryMember.setOnAction(new EventHandler<ActionEvent>() {
+		MenuItem checkoutPage = new MenuItem("Checkout");
+		checkoutPage.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
 				hideAllWindows();
-				if(!AddNewLibraryMemberWindow.INSTANCE.isInitialized()) {
-					AddNewLibraryMemberWindow.INSTANCE.init();
+				if(!CheckoutWindow.INSTANCE.isInitialized()) {
+					CheckoutWindow.INSTANCE.init();
 				}
-				AddNewLibraryMemberWindow.INSTANCE.clear();
-				AddNewLibraryMemberWindow.INSTANCE.show();
+
+				ControllerInterface controller = new SystemController();
+				List<CheckoutTableData> tableData = controller.readAllCheckouts();
+				CheckoutWindow.INSTANCE.getTable().setItems(FXCollections.observableArrayList(tableData));
+				CheckoutWindow.INSTANCE.clear();
+				CheckoutWindow.INSTANCE.show();
             }
 		});
-		optionsMenu.getItems().addAll(login);//, bookIds, memberIds, addBookCopy);
 
+		optionsMenu.getItems().addAll(login, bookIds, memberIds, addBookCopy,checkoutPage);
 
 		mainMenu.getMenus().addAll(optionsMenu);
 		Scene scene = new Scene(topContainer, 420, 375);

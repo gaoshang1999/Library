@@ -1,2 +1,5 @@
-/bin/
-/.gitignore
+/business/
+/dataaccess/
+/docs/
+/ui/
+/library/

@@ -5,8 +5,8 @@ import java.io.Serializable;
 /**
  * Immutable class
  */
-final public class BookCopy implements Serializable {
-	
+final public class BookCopy implements Serializable,Comparable<BookCopy> {
+
 	private static final long serialVersionUID = -63976228084869815L;
 	private Book book;
 	private int copyNum;
@@ -16,30 +16,30 @@ final public class BookCopy implements Serializable {
 		this.copyNum = copyNum;
 		this.isAvailable = isAvailable;
 	}
-	
+
 	BookCopy(Book book, int copyNum) {
 		this.book = book;
 		this.copyNum = copyNum;
 	}
-	
-	
+
+
 	public boolean isAvailable() {
 		return isAvailable;
 	}
 
-	
+
 	public int getCopyNum() {
 		return copyNum;
 	}
-	
+
 	public Book getBook() {
 		return book;
 	}
-	
+
 	public void changeAvailability() {
 		isAvailable = !isAvailable;
 	}
-	
+
 	@Override
 	public boolean equals(Object ob) {
 		if(ob == null) return false;
@@ -47,5 +47,11 @@ final public class BookCopy implements Serializable {
 		BookCopy copy = (BookCopy)ob;
 		return copy.book.getIsbn().equals(book.getIsbn()) && copy.copyNum == copyNum;
 	}
-	
+
+	@Override
+	public int compareTo(BookCopy o) {
+		// TODO Auto-generated method stub
+		return Integer.compare(this.copyNum, o.getCopyNum());
+	}
+
 }

@@ -2,9 +2,8 @@ package ui;
 
 import business.AuthException;
 import business.ControllerInterface;
-import business.NotExsitsException;
+import business.NotExistsException;
 import business.SystemController;
-import dataaccess.Auth;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -12,7 +11,6 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -23,9 +21,7 @@ import javafx.stage.Stage;
 
 public class AddBookCopyWindow extends Stage implements LibWindow {
 	public static final AddBookCopyWindow INSTANCE = new AddBookCopyWindow();
-
-	Auth accessLevel = Auth.ADMIN;
-	private MenuItem mItem=null;
+	
 	private boolean isInitialized = false;
 	public boolean isInitialized() {
 		return isInitialized;
@@ -37,7 +33,7 @@ public class AddBookCopyWindow extends Stage implements LibWindow {
 	public String getIsbn() {
 		return this.isbn.getText().trim();
 	}
-
+	
 	private Text messageBar = new Text();
 	public void setData(String data) {
 		messageBar.setText(data);
@@ -45,9 +41,8 @@ public class AddBookCopyWindow extends Stage implements LibWindow {
 	public void clear() {
 		messageBar.setText("");
 	}
-	private AddBookCopyWindow() {
-	}
-
+	private AddBookCopyWindow() {}
+	
 	public void init() {
 		GridPane grid = new GridPane();
 		grid.setId("top-container");
@@ -59,14 +54,14 @@ public class AddBookCopyWindow extends Stage implements LibWindow {
         Text scenetitle = new Text("Add Book Copy");
         scenetitle.setFont(Font.font("Harlow Solid Italic", FontWeight.NORMAL, 20)); //Tahoma
         grid.add(scenetitle, 0, 0, 2, 1);
-
+		
         Label l = new Label();
         l.setText("ISBN:");
         grid.add(l, 0,1);
-
+        
         isbn = new TextField();
 		grid.add(isbn, 1,1);
-
+		
 		Button okBtn = new Button("Ok");
 		okBtn.setOnAction(new EventHandler<ActionEvent>() {
         	@Override
@@ -79,7 +74,7 @@ public class AddBookCopyWindow extends Stage implements LibWindow {
         		} catch(AuthException ex) {
         			messageBar.setFill(Start.Colors.red);
         			messageBar.setText("Error! Only Admin can do this operation!");
-        		} catch(NotExsitsException ex) {
+        		} catch(NotExistsException ex) {
         			messageBar.setFill(Start.Colors.red);
         			messageBar.setText("Error! Book is not exists!");
         		}
@@ -88,11 +83,11 @@ public class AddBookCopyWindow extends Stage implements LibWindow {
         HBox hOk = new HBox(10);
         hOk.setAlignment(Pos.BOTTOM_LEFT);
         hOk.getChildren().add(okBtn);
-        grid.add(hOk, 3, 1);
-
+        grid.add(hOk, 3, 1);  
+		
         messageBar = new Text();
         grid.add(messageBar, 1, 2, 2, 1);
-
+		
 		Button backBtn = new Button("<= Back to Main");
         backBtn.setOnAction(new EventHandler<ActionEvent>() {
         	@Override
@@ -104,27 +99,11 @@ public class AddBookCopyWindow extends Stage implements LibWindow {
         HBox hBack = new HBox(10);
         hBack.setAlignment(Pos.BOTTOM_LEFT);
         hBack.getChildren().add(backBtn);
-        grid.add(hBack, 0, 3);
+        grid.add(hBack, 0, 3);       
 
-
+        
 		Scene scene = new Scene(grid);
 		scene.getStylesheets().add(getClass().getResource("library.css").toExternalForm());
         setScene(scene);
-	}
-	@Override
-	public boolean isAllowed(Auth x) {
-		// TODO Auto-generated method stub
-		if(accessLevel.equals(x) ) return true;
-		return false;
-	}
-	@Override
-	public MenuItem getMenuItem() {
-		// TODO Auto-generated method stub
-		return mItem;
-	}
-	@Override
-	public void setMenuItem(MenuItem x) {
-		// TODO Auto-generated method stub
-		mItem = x;
 	}
 }
