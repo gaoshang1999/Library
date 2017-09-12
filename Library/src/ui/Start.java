@@ -151,10 +151,12 @@ public class Start extends Application {
 				AllMembersWindow.INSTANCE.setData(sb.toString());
 				AllMembersWindow.INSTANCE.show();
             }
+
 		});
 
 		MenuItem addBookCopy = new MenuItem("Add Book Copy");
 		AddBookCopyWindow.INSTANCE.setMenuItem(addBookCopy);
+
 		addBookCopy.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
@@ -165,6 +167,7 @@ public class Start extends Application {
 				AddBookCopyWindow.INSTANCE.clear();
 				AddBookCopyWindow.INSTANCE.show();
             }
+
 		});
 
 		MenuItem addNewLibraryMember = new MenuItem("Add New Library Member");
@@ -181,6 +184,7 @@ public class Start extends Application {
             }
 		});
 		optionsMenu.getItems().addAll(login);//, bookIds, memberIds, addBookCopy);
+
 
 
 		mainMenu.getMenus().addAll(optionsMenu);

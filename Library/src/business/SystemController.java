@@ -45,19 +45,28 @@ public class SystemController implements ControllerInterface {
 		retval.addAll(da.readBooksMap().keySet());
 		return retval;
 	}
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> 477ddb6e28fe8d3ecf40382b655c96cb83ac1354
 	@Override
 	public int addBookCopy(String isbn) throws AuthException, NotExsitsException{
 		System.out.println(this.currentAuth);
 		if(null == this.currentAuth || this.currentAuth == Auth.LIBRARIAN) {
 			throw new AuthException();
 		}
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> 477ddb6e28fe8d3ecf40382b655c96cb83ac1354
 		DataAccess da = new DataAccessFacade();
 		HashMap<String, Book> map = da.readBooksMap();
 		if(!map.containsKey(isbn)) {
 			throw new NotExsitsException();
 		}
+<<<<<<< HEAD
 
 		Book book = map.get(isbn);
 		book.addCopy();
@@ -68,4 +77,16 @@ public class SystemController implements ControllerInterface {
 	}
 
 
+=======
+		
+		Book book = map.get(isbn);
+		book.addCopy();
+		
+		da.saveBook(book);
+		
+		return book.getNumCopies();
+	}
+	
+	
+>>>>>>> 477ddb6e28fe8d3ecf40382b655c96cb83ac1354
 }
