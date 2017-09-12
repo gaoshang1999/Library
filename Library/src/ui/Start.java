@@ -1,5 +1,6 @@
 package ui;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -32,31 +33,46 @@ public class Start extends Application {
 	public static Stage primStage() {
 		return primStage;
 	}
-	
+
 	public static class Colors {
 		static Color green = Color.web("#034220");
 		static Color red = Color.FIREBRICK;
 	}
-	
-	private static Stage[] allWindows = { 
+
+	private static Stage[] allWindows = {
 		LoginWindow.INSTANCE,
-		AllMembersWindow.INSTANCE,	
-		AllBooksWindow.INSTANCE
+		AllMembersWindow.INSTANCE,
+		AllBooksWindow.INSTANCE,
+		AddBookCopyWindow.INSTANCE,
+		AddNewLibraryMemberWindow.INSTANCE
 	};
-	
+
 	public static void hideAllWindows() {
 		primStage.hide();
 		for(Stage st: allWindows) {
 			st.hide();
 		}
 	}
-	
+
+	public static List<MenuItem> getAllowedWindows(){
+		List<MenuItem> allowedWindows = new ArrayList<MenuItem>();
+		LibWindow lw;
+		for (Stage st: allWindows){
+			lw = (LibWindow)st;
+			if(lw.isAllowed(SystemController.currentAuth) == true){
+				allowedWindows.add(lw.getMenuItem());
+			}
+		}
+
+		return allowedWindows;
+	}
+
 
 	@Override
 	public void start(Stage primaryStage) {
 		primStage = primaryStage;
 		primaryStage.setTitle("Main Page");
-				
+
 		VBox topContainer = new VBox();
 		topContainer.setId("top-container");
 		MenuBar mainMenu = new MenuBar();
@@ -73,14 +89,14 @@ public class Start extends Application {
         splashLabel.setFont(Font.font("Trajan Pro", FontWeight.BOLD, 30));
         splashBox.getChildren().add(splashLabel);
         splashBox.setAlignment(Pos.CENTER);
-		
+
 		topContainer.getChildren().add(mainMenu);
 		topContainer.getChildren().add(splashBox);
 		topContainer.getChildren().add(imageHolder);
-		
+
 		Menu optionsMenu = new Menu("Options");
 		MenuItem login = new MenuItem("Login");
-		
+		LoginWindow.INSTANCE.setMenuItem(login);
 		login.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
@@ -91,9 +107,10 @@ public class Start extends Application {
     			LoginWindow.INSTANCE.clear();
     			LoginWindow.INSTANCE.show();
             }
-        });			
-							
+        });
+
 		MenuItem bookIds = new MenuItem("All Book Ids");
+		AllBooksWindow.INSTANCE.setMenuItem(bookIds);
 		bookIds.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
@@ -112,8 +129,9 @@ public class Start extends Application {
 				AllBooksWindow.INSTANCE.show();
             }
 		});
-		
+
 		MenuItem memberIds = new MenuItem("All Member Ids");
+		AllMembersWindow.INSTANCE.setMenuItem(memberIds);
 		memberIds.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
@@ -133,8 +151,37 @@ public class Start extends Application {
 				AllMembersWindow.INSTANCE.setData(sb.toString());
 				AllMembersWindow.INSTANCE.show();
             }
-		});	
-		optionsMenu.getItems().addAll(login, bookIds, memberIds);
+		});
+
+		MenuItem addBookCopy = new MenuItem("Add Book Copy");
+		AddBookCopyWindow.INSTANCE.setMenuItem(addBookCopy);
+		addBookCopy.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+				hideAllWindows();
+				if(!AddBookCopyWindow.INSTANCE.isInitialized()) {
+					AddBookCopyWindow.INSTANCE.init();
+				}
+				AddBookCopyWindow.INSTANCE.clear();
+				AddBookCopyWindow.INSTANCE.show();
+            }
+		});
+
+		MenuItem addNewLibraryMember = new MenuItem("Add New Library Member");
+		AddNewLibraryMemberWindow.INSTANCE.setMenuItem(addNewLibraryMember);
+		addNewLibraryMember.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+				hideAllWindows();
+				if(!AddNewLibraryMemberWindow.INSTANCE.isInitialized()) {
+					AddNewLibraryMemberWindow.INSTANCE.init();
+				}
+				AddNewLibraryMemberWindow.INSTANCE.clear();
+				AddNewLibraryMemberWindow.INSTANCE.show();
+            }
+		});
+		optionsMenu.getItems().addAll(login);//, bookIds, memberIds, addBookCopy);
+
 
 		mainMenu.getMenus().addAll(optionsMenu);
 		Scene scene = new Scene(topContainer, 420, 375);
@@ -142,5 +189,5 @@ public class Start extends Application {
 		scene.getStylesheets().add(getClass().getResource("library.css").toExternalForm());
 		primaryStage.show();
 	}
-	
+
 }

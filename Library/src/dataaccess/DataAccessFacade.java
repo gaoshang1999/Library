@@ -57,6 +57,9 @@ public class DataAccessFacade implements DataAccess {
 	}
 	
 	
+	 
+	
+	
 	/////load methods - these place test data into the storage area
 	///// - used just once at startup  
 	//static void loadMemberMap(List<LibraryMember> memberList) {
@@ -143,6 +146,16 @@ public class DataAccessFacade implements DataAccess {
 			return "(" + first.toString() + ", " + second.toString() + ")";
 		}
 		private static final long serialVersionUID = 5399827794066637059L;
+	}
+
+
+
+	@Override
+	public void saveBook(Book book) {
+		HashMap<String, Book> map = readBooksMap();		 
+		map.put(book.getIsbn(), book);
+		saveToStorage(StorageType.BOOKS, map);	
+		
 	}
 	
 }
