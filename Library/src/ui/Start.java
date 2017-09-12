@@ -41,7 +41,8 @@ public class Start extends Application {
 	private static Stage[] allWindows = { 
 		LoginWindow.INSTANCE,
 		AllMembersWindow.INSTANCE,	
-		AllBooksWindow.INSTANCE
+		AllBooksWindow.INSTANCE,
+		AddBookCopyWindow.INSTANCE
 	};
 	
 	public static void hideAllWindows() {
@@ -134,7 +135,20 @@ public class Start extends Application {
 				AllMembersWindow.INSTANCE.show();
             }
 		});	
-		optionsMenu.getItems().addAll(login, bookIds, memberIds);
+		
+		MenuItem addBookCopy = new MenuItem("Add Book Copy");
+		addBookCopy.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+				hideAllWindows();
+				if(!AddBookCopyWindow.INSTANCE.isInitialized()) {
+					AddBookCopyWindow.INSTANCE.init();
+				}
+				AddBookCopyWindow.INSTANCE.clear();
+				AddBookCopyWindow.INSTANCE.show();
+            }
+		});	
+		optionsMenu.getItems().addAll(login, bookIds, memberIds, addBookCopy);
 
 		mainMenu.getMenus().addAll(optionsMenu);
 		Scene scene = new Scene(topContainer, 420, 375);
