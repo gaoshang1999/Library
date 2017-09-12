@@ -1,9 +1,7 @@
 package ui;
 
 import business.Address;
-import business.ControllerInterface;
-import business.LoginException;
-import business.Person;
+import business.LibraryMember;
 import business.SystemController;
 import dataaccess.Auth;
 import javafx.event.ActionEvent;
@@ -15,11 +13,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -177,10 +173,9 @@ public class AddNewLibraryMemberWindow extends Stage implements LibWindow {
 
         			Address add = new Address(streetTextField.getText(), cityTextField.getText(),
 							stateTextField.getText(), zipTextField.getText());
-        			Person per = new Person(firstNameTextField.getText(), lastNameTextField.getText(), telephoneTextField.getText(), add);
+        			LibraryMember per = new LibraryMember(memberIdTextField.getText(), firstNameTextField.getText(), lastNameTextField.getText(), telephoneTextField.getText(), add);
 
-
-        			c.addNewMember(memberIdTextField.getText(),per);
+        			c.addNewMember(per);
         			messageBar.setFill(Start.Colors.green);
              	    messageBar.setText("Member Created successfuly");
              	    //clearFields();
