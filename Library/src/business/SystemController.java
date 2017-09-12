@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import business.Book;
 import dataaccess.Auth;
 import dataaccess.DataAccess;
 import dataaccess.DataAccessFacade;
@@ -11,7 +12,7 @@ import dataaccess.User;
 
 public class SystemController implements ControllerInterface {
 	public static Auth currentAuth = null;
-
+	
 	public void login(String id, String password) throws LoginException {
 		DataAccess da = new DataAccessFacade();
 		HashMap<String, User> map = da.readUserMap();
@@ -23,7 +24,7 @@ public class SystemController implements ControllerInterface {
 			throw new LoginException("Password incorrect");
 		}
 		currentAuth = map.get(id).getAuthorization();
-
+		
 	}
 	@Override
 	public List<String> allMemberIds() {
@@ -32,12 +33,7 @@ public class SystemController implements ControllerInterface {
 		retval.addAll(da.readMemberMap().keySet());
 		return retval;
 	}
-
-	public void addNewMember(LibraryMember per){
-		DataAccess da = new DataAccessFacade();
-		da.saveNewMember(per);
-	}
-
+	
 	@Override
 	public List<String> allBookIds() {
 		DataAccess da = new DataAccessFacade();
@@ -45,27 +41,6 @@ public class SystemController implements ControllerInterface {
 		retval.addAll(da.readBooksMap().keySet());
 		return retval;
 	}
-
-	@Override
-	public int addBookCopy(String isbn) throws AuthException, NotExsitsException{
-		System.out.println(this.currentAuth);
-		if(null == this.currentAuth || this.currentAuth == Auth.LIBRARIAN) {
-			throw new AuthException();
-		}
-
-		DataAccess da = new DataAccessFacade();
-		HashMap<String, Book> map = da.readBooksMap();
-		if(!map.containsKey(isbn)) {
-			throw new NotExsitsException();
-		}
-
-		Book book = map.get(isbn);
-		book.addCopy();
-
-		da.saveBook(book);
-
-		return book.getNumCopies();
-	}
-
-
+	
+	
 }
