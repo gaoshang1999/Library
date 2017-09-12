@@ -11,6 +11,4 @@ public interface ControllerInterface {
 	public List<String> allMemberIds();
 	public List<String> allBookIds();
 	
-	public int addBookCopy(String isbn) throws AuthException, NotExsitsException;
-	
 }
