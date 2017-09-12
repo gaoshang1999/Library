@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="390.0" prefWidth="661.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <children>
+    <AnchorPane layoutX="0.0" layoutY="0.0" opacity="1.0" prefHeight="390.0" prefWidth="169.0" styleClass="left">
+      <children>
+        <Pane focusTraversable="true" layoutX="0.0" layoutY="0.0" prefHeight="390.0" prefWidth="169.0" style="" styleClass="left-panel">
+          <children>
+            <Label layoutX="4.0" layoutY="23.0" text="Library Management System" textFill="#0029ff">
+              <font>
+                <Font name="System Bold" size="12.0" />
+              </font>
+            </Label>
+            <Button id="bookBtn" layoutX="14.0" layoutY="75.0" mnemonicParsing="false" opacity="1.0" prefWidth="141.0" text="List All Books" textFill="RED" textOverrun="CENTER_ELLIPSIS" />
+            <Button id="memBtn" layoutX="14.0" layoutY="119.0" mnemonicParsing="false" opacity="1.0" prefWidth="141.0" text="List All Members" textFill="RED" textOverrun="CENTER_ELLIPSIS" />
+            <Button id="addBookCopy" layoutX="14.0" layoutY="168.0" mnemonicParsing="false" opacity="1.0" prefWidth="141.0" text="Add Book Copy" textFill="RED" textOverrun="CENTER_ELLIPSIS" />
+            <Button id="logoutBtn" layoutX="14.0" layoutY="355.0" mnemonicParsing="false" opacity="1.0" prefWidth="141.0" text="Log Out" textFill="RED" textOverrun="CENTER_ELLIPSIS" />
+          </children>
+        </Pane>
+      </children>
+      <stylesheets>
+        <URL value="@left.css" />
+      </stylesheets>
+    </AnchorPane>
+    <GridPane id="main" layoutX="169.0" layoutY="0.0" prefHeight="390.0" prefWidth="429.0" />
+  </children>
+</AnchorPane>
