@@ -1,11 +1,13 @@
 package ui;
 
+import dataaccess.Auth;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -16,7 +18,9 @@ import javafx.stage.Stage;
 
 public class AllBooksWindow extends Stage implements LibWindow {
 	public static final AllBooksWindow INSTANCE = new AllBooksWindow();
-	
+
+	private Auth accessLevel = Auth.BOTH;
+	private MenuItem mItem=null;
 	private boolean isInitialized = false;
 	public boolean isInitialized() {
 		return isInitialized;
@@ -29,7 +33,7 @@ public class AllBooksWindow extends Stage implements LibWindow {
 		ta.setText(data);
 	}
 	private AllBooksWindow() {}
-	
+
 	public void init() {
 		GridPane grid = new GridPane();
 		grid.setId("top-container");
@@ -41,7 +45,7 @@ public class AllBooksWindow extends Stage implements LibWindow {
         Text scenetitle = new Text("All Book IDs");
         scenetitle.setFont(Font.font("Harlow Solid Italic", FontWeight.NORMAL, 20)); //Tahoma
         grid.add(scenetitle, 0, 0, 2, 1);
-		
+
 		ta = new TextArea();
 		grid.add(ta, 0,1);
 		Button backBtn = new Button("<= Back to Main");
@@ -59,5 +63,21 @@ public class AllBooksWindow extends Stage implements LibWindow {
 		Scene scene = new Scene(grid);
 		scene.getStylesheets().add(getClass().getResource("library.css").toExternalForm());
         setScene(scene);
+	}
+	@Override
+	public boolean isAllowed(Auth x) {
+		// TODO Auto-generated method stub
+		if(accessLevel.equals(x) ) return true;
+		return false;
+	}
+	@Override
+	public MenuItem getMenuItem() {
+		// TODO Auto-generated method stub
+		return mItem;
+	}
+	@Override
+	public void setMenuItem(MenuItem x) {
+		// TODO Auto-generated method stub
+		mItem = x;
 	}
 }
