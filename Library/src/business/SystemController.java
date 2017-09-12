@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import business.Book;
 import dataaccess.Auth;
 import dataaccess.DataAccess;
 import dataaccess.DataAccessFacade;
@@ -40,6 +39,27 @@ public class SystemController implements ControllerInterface {
 		List<String> retval = new ArrayList<>();
 		retval.addAll(da.readBooksMap().keySet());
 		return retval;
+	}
+	
+	@Override
+	public int addBookCopy(String isbn) throws AuthException, NotExsitsException{
+		System.out.println(this.currentAuth);
+		if(null == this.currentAuth || this.currentAuth == Auth.LIBRARIAN) {
+			throw new AuthException();
+		}
+		
+		DataAccess da = new DataAccessFacade();
+		HashMap<String, Book> map = da.readBooksMap();
+		if(!map.containsKey(isbn)) {
+			throw new NotExsitsException();
+		}
+		
+		Book book = map.get(isbn);
+		book.addCopy();
+		
+		da.saveBook(book);
+		
+		return book.getNumCopies();
 	}
 	
 	

@@ -128,3 +128,4 @@ public class AddBookCopyWindow extends Stage implements LibWindow {
 		mItem = x;
 	}
 }
+
