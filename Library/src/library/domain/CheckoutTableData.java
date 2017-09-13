@@ -38,4 +38,12 @@ public class CheckoutTableData {
 	private int copyNumber;
 	private LocalDate checkoutDate;
 	private LocalDate dueDate;
+
+	private boolean isOverdue;
+	public boolean getIsOverdue() {
+		return isOverdue;
+	}
+	public void setOverdue(boolean isOverdue) {
+		this.isOverdue = isOverdue;
+	}
 }

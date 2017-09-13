@@ -35,10 +35,10 @@ final public class LibraryMember extends Person implements Serializable {
 	}
 
 	public CheckoutRecordEntry checkoutBook(BookCopy bookCopy,LocalDate checkoutDate,LocalDate dueDate){
-		DataAccess da = new DataAccessFacade();
-		CheckoutRecordEntry checkoutEntry = new CheckoutRecordEntry(bookCopy,checkoutDate,dueDate);
+		//DataAccess da = new DataAccessFacade();
+		//CheckoutRecordEntry checkoutEntry = new CheckoutRecordEntry(bookCopy,checkoutDate,dueDate);
+		CheckoutRecordEntry checkoutEntry = checkoutRecord.addCheckoutEntry(bookCopy,checkoutDate,dueDate);
 		bookCopy.changeAvailability();
-		checkoutRecord.addCheckoutEntry(checkoutEntry);
 		return checkoutEntry;
 	}
 

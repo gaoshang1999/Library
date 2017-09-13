@@ -27,6 +27,7 @@
                 <Button id="addBookCopyBtn" mnemonicParsing="false" opacity="1.0" prefWidth="141.0" text="Add Book Copy" textFill="RED" textOverrun="CENTER_ELLIPSIS" />
                 <Button id="addLibraryMemberBtn" mnemonicParsing="false" opacity="1.0" prefWidth="141.0" text="Add Library Member" textFill="RED" textOverrun="CENTER_ELLIPSIS" />
                 <Button id="checkOutBtn" mnemonicParsing="false" opacity="1.0" prefWidth="141.0" text="Check Out" textFill="RED" textOverrun="CENTER_ELLIPSIS" />
+                <Button id="isOverduetBtn" mnemonicParsing="false" opacity="1.0" prefWidth="141.0" text="Is Overdue" textFill="RED" textOverrun="CENTER_ELLIPSIS" />
               </children>
             </VBox>
             <Button id="logoutBtn" layoutX="14.0" layoutY="355.0" mnemonicParsing="false" opacity="1.0" prefWidth="141.0" text="Log Out" textFill="RED" textOverrun="CENTER_ELLIPSIS" />
@@ -37,6 +38,24 @@
         <URL value="@left.css" />
       </stylesheets>
     </AnchorPane>
-    <GridPane id="main" layoutX="169.0" layoutY="0.0" prefHeight="390.0" prefWidth="612.0" />
+    <GridPane id="main" alignment="CENTER" layoutX="169.0" layoutY="0.0" prefHeight="390.0" prefWidth="582.0">
+      <children>
+        <HBox id="HBox" alignment="CENTER" spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+          <children>
+            <Text fill="#0029ff" scaleX="1.0126897847576888" scaleY="0.8771400236074804" stroke="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome" textAlignment="CENTER">
+              <font>
+                <Font name="System Bold" size="18.0" />
+              </font>
+            </Text>
+          </children>
+        </HBox>
+      </children>
+      <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+      </columnConstraints>
+      <rowConstraints>
+        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+      </rowConstraints>
+    </GridPane>
   </children>
 </AnchorPane>

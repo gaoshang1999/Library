@@ -21,6 +21,8 @@ public interface ControllerInterface {
 	public List<CheckoutTableData> readAllCheckouts();
 	public List<CheckoutTableData> readCheckoutsByMemberId(String memberId) throws NotExistsException;
 
+	public List<CheckoutTableData> readCheckoutsByIsbn(String isbn) throws NotExistsException;
 
-
+	public List<Book> allBooks();
+	public List<LibraryMember> allLibraryMembers();
 }
