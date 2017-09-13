@@ -48,6 +48,12 @@ public class SystemController implements ControllerInterface {
 	}
 
 	@Override
+	public void addNewMember(LibraryMember per){ 
+		DataAccess da = new DataAccessFacade(); 
+		da.saveNewMember(per); 
+	} 
+	
+	@Override
 	public int addBookCopy(String isbn) throws AuthException, NotExistsException {
 		System.out.println(this.currentAuth);
 		if (null == this.currentAuth || this.currentAuth == Auth.LIBRARIAN) {

@@ -45,8 +45,6 @@ public class Start extends Application {
     	}
     }
 
-    private double xOffset = 0;
-    private double yOffset = 0;
     /**
      * @param args the command line arguments
      */

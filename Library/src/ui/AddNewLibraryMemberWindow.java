@@ -1,6 +1,7 @@
 package ui;
 
 import business.Address;
+import business.ControllerInterface;
 import business.LibraryMember;
 import business.SystemController;
 import dataaccess.Auth;
@@ -158,7 +159,7 @@ public class AddNewLibraryMemberWindow extends Stage implements LibWindow {
         			return;
         		}
 
-        		SystemController c = new SystemController();
+        		ControllerInterface c = new SystemController();
     			if(c.allMemberIds().contains(memberIdTextField.getText())){
     				messageBar.setFill(Start.Colors.red);
         			messageBar.setText("Error! " + "Member Id already exists");
@@ -187,7 +188,7 @@ public class AddNewLibraryMemberWindow extends Stage implements LibWindow {
 
         		Menu parent = mItem.getParentMenu();
         		parent.getItems().clear();
-        		parent.getItems().addAll(Start.getAllowedWindows());
+//        		parent.getItems().addAll(Start.getAllowedWindows());
 
         		//mItem.getParentMenu().getItems().addA
 
@@ -211,21 +212,21 @@ public class AddNewLibraryMemberWindow extends Stage implements LibWindow {
         setScene(scene);
 
     }
-	@Override
-	public boolean isAllowed(Auth x) {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	@Override
-	public void setMenuItem(MenuItem x){
-		mItem = x;
-	}
-
-	@Override
-	public MenuItem getMenuItem(){
-		return mItem;
-	}
+//	@Override
+//	public boolean isAllowed(Auth x) {
+//		// TODO Auto-generated method stub
+//		return true;
+//	}
+//
+//	@Override
+//	public void setMenuItem(MenuItem x){
+//		mItem = x;
+//	}
+//
+//	@Override
+//	public MenuItem getMenuItem(){
+//		return mItem;
+//	}
 
 
 }

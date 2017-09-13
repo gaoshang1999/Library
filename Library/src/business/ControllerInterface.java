@@ -14,15 +14,13 @@ public interface ControllerInterface {
 	public List<String> allMemberIds();
 	public List<String> allBookIds();
 
-<<<<<<< HEAD
 	public void addNewMember(LibraryMember per);
-	public int addBookCopy(String isbn) throws AuthException, NotExsitsException;
-=======
 	public int addBookCopy(String isbn) throws AuthException, NotExistsException;
+
 	public CheckoutTableData checkoutBook(String memberId,String isbn) throws NotExistsException;
 	public List<CheckoutTableData> readAllCheckouts();
 	public List<CheckoutTableData> readCheckoutsByMemberId(String memberId) throws NotExistsException;
 
 
->>>>>>> CheckoutImpl
+
 }

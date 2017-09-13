@@ -49,7 +49,7 @@ public class LoginWindow extends Stage{
 	        grid.setPadding(new Insets(25, 25, 25, 25));
 
 	        Text scenetitle = new Text("Login");
-	        scenetitle.setFont(Font.font("Harlow Solid Italic", FontWeight.NORMAL, 20)); //Tahoma
+	        scenetitle.setFont(Font.font("Lucida Grande", FontWeight.NORMAL, 20)); //Tahoma
 	        grid.add(scenetitle, 0, 0, 2, 1);
 
 	        Label userName = new Label("User Name:");

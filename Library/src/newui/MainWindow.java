@@ -46,7 +46,10 @@ public class MainWindow extends Stage {
 
 	        Button bookBtn = (Button )root.lookup("#bookBtn");
 	        Button memBtn = (Button )root.lookup("#memBtn");
-	        Button addBookCopy = (Button )root.lookup("#addBookCopy");
+	        Button addBookCopyBtn = (Button )root.lookup("#addBookCopyBtn");
+	        Button addLibraryMemberBtn = (Button )root.lookup("#addLibraryMemberBtn");
+	        Button checkOutBtn = (Button )root.lookup("#checkOutBtn");
+	        
 	        Button logoutBtn = (Button )root.lookup("#logoutBtn");
 
 	        GridPane  p = (GridPane )root.lookup("#main");
@@ -90,7 +93,7 @@ public class MainWindow extends Stage {
 	            }
 			});
 
-	        addBookCopy.setOnAction(new EventHandler<ActionEvent>() {
+	        addBookCopyBtn.setOnAction(new EventHandler<ActionEvent>() {
 	            @Override
 	            public void handle(ActionEvent e) {
 	            	p.getChildren().clear();
@@ -98,6 +101,21 @@ public class MainWindow extends Stage {
 	            }
 			});
 
+	        addLibraryMemberBtn.setOnAction(new EventHandler<ActionEvent>() {
+	            @Override
+	            public void handle(ActionEvent e) {
+	            	p.getChildren().clear();
+	                p.add(AddLibraryMemberPane.INSTANCE.initPane(), 0, 0);
+	            }
+			});
+	        
+	        checkOutBtn.setOnAction(new EventHandler<ActionEvent>() {
+	            @Override
+	            public void handle(ActionEvent e) {
+	            	p.getChildren().clear();
+	                p.add(CheckoutPane.INSTANCE.initPane(), 0, 0, 4, 1);
+	            }
+			});
 
 	        logoutBtn.setOnAction(new EventHandler<ActionEvent>() {
 	            @Override

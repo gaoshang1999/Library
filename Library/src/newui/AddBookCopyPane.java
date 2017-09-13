@@ -2,7 +2,7 @@ package newui;
 
 import business.AuthException;
 import business.ControllerInterface;
-import business.NotExsitsException;
+import business.NotExistsException;
 import business.SystemController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -45,7 +45,7 @@ public class AddBookCopyPane {
         grid.setPadding(new Insets(25, 25, 25, 25));
 
         Text scenetitle = new Text("Add Book Copy");
-        scenetitle.setFont(Font.font("Harlow Solid Italic", FontWeight.NORMAL, 20)); //Tahoma
+        scenetitle.setFont(Font.font("Lucida Grande", FontWeight.NORMAL, 20)); //Tahoma
         grid.add(scenetitle, 0, 0, 2, 1);
 
         Label l = new Label();
@@ -67,7 +67,7 @@ public class AddBookCopyPane {
         		} catch(AuthException ex) {
         			messageBar.setFill(Start.Colors.red);
         			messageBar.setText("Error! Only Admin can do this operation!");
-        		} catch(NotExsitsException ex) {
+        		} catch(NotExistsException ex) {
         			messageBar.setFill(Start.Colors.red);
         			messageBar.setText("Error! Book is not exists!");
         		}
