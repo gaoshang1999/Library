@@ -48,6 +48,7 @@ public class SystemController implements ControllerInterface {
 	}
 
 	@Override
+
 	public List<Book> allBooks(){
 		DataAccess da = new DataAccessFacade();
 		List<Book> retval = new ArrayList<>();
@@ -112,6 +113,9 @@ public class SystemController implements ControllerInterface {
 			da.saveBook(book);
 			return retVal;
 		} catch (NoSuchElementException e) {
+			throw new NotExistsException();
+		}
+		catch (NullPointerException e) {
 			throw new NotExistsException();
 		}
 	}
