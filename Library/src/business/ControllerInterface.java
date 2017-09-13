@@ -6,6 +6,7 @@ import java.util.List;
 import business.Book;
 import dataaccess.DataAccess;
 import dataaccess.DataAccessFacade;
+import javafx.scene.control.TableView;
 import library.domain.CheckoutRecordEntry;
 import library.domain.CheckoutTableData;
 
@@ -25,4 +26,6 @@ public interface ControllerInterface {
 
 	public List<Book> allBooks();
 	public List<LibraryMember> allLibraryMembers();
+
+	public void printCheckoutTable(TableView table);
 }
