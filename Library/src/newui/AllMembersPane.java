@@ -1,5 +1,6 @@
 package newui;
 
+import dataaccess.Auth;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.TextArea;
@@ -9,10 +10,12 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
-public class AllMembersPane  {
+public class AllMembersPane  extends OurStage{
 	public static final AllMembersPane INSTANCE = new AllMembersPane();
 
-	private AllMembersPane() {}
+	private AllMembersPane() {
+		accessLevel = Auth.ADMIN;
+	}
 
 	private TextArea ta;
 	public void setData(String data) {

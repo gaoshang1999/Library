@@ -3,6 +3,7 @@ package newui;
 import business.ControllerInterface;
 import business.LoginException;
 import business.SystemController;
+import dataaccess.Auth;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -22,7 +23,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class LoginWindow extends Stage{
+public class LoginWindow extends OurStage{
 	public static final LoginWindow INSTANCE = new LoginWindow();
 
 	private boolean isInitialized = false;
@@ -47,6 +48,9 @@ public class LoginWindow extends Stage{
 	        grid.setHgap(10);
 	        grid.setVgap(10);
 	        grid.setPadding(new Insets(25, 25, 25, 25));
+	        grid.setMinWidth(400);
+
+	        setTitle("Libary Management System");
 
 	        Text scenetitle = new Text("Login");
 	        scenetitle.setFont(Font.font("Lucida Grande", FontWeight.NORMAL, 20)); //Tahoma
@@ -87,18 +91,18 @@ public class LoginWindow extends Stage{
 	        			messageBar.setFill(Start.Colors.green);
 	             	    messageBar.setText("Login successful");
 
-	             	    Thread.sleep(1000);
+	             	    //Thread.sleep(1000);
 
 	             	    MainWindow.INSTANCE.init();
 	                    hide();
 	        		} catch(LoginException ex) {
 	        			messageBar.setFill(Start.Colors.red);
 	        			messageBar.setText("Error! " + ex.getMessage());
-	        			ex.printStackTrace();
+	        			//ex.printStackTrace();
 	        		}catch(Exception ex) {
 	        			messageBar.setFill(Start.Colors.red);
 	        			messageBar.setText("Error! " + ex.getMessage());
-	        			ex.printStackTrace();
+	        			//ex.printStackTrace();
 	        		}
 
 
@@ -116,4 +120,6 @@ public class LoginWindow extends Stage{
 
     private double xOffset = 0;
     private double yOffset = 0;
+
+
 }

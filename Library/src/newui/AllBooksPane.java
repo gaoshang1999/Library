@@ -1,5 +1,6 @@
 package newui;
 
+import dataaccess.Auth;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.TextArea;
@@ -9,12 +10,16 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
-public class AllBooksPane  {
+public class AllBooksPane  extends OurStage {
 	public static final AllBooksPane INSTANCE = new AllBooksPane();
 
 	private TextArea ta;
 	public void setData(String data) {
 		ta.setText(data);
+	}
+
+	private AllBooksPane(){
+		accessLevel = Auth.LIBRARIAN;
 	}
 
 	public Pane initPane() {

@@ -5,6 +5,7 @@ import java.util.List;
 import business.ControllerInterface;
 import business.NotExistsException;
 import business.SystemController;
+import dataaccess.Auth;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -13,6 +14,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -27,8 +29,11 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import library.domain.CheckoutTableData;
 
-public class CheckoutWindow extends Stage implements CoWindow {
+public class CheckoutWindow extends OurStage implements CoWindow {
 	public static final CheckoutWindow INSTANCE = new CheckoutWindow();
+
+
+
 	private TableView table = new TableView();
 	private Text messageBar = new Text();
 	public TableView getTable() {
@@ -36,6 +41,9 @@ public class CheckoutWindow extends Stage implements CoWindow {
 	}
 
 
+	private void CheckOutWindow(){
+		accessLevel = Auth.LIBRARIAN;
+	}
 	public void setData(String data) {
 		messageBar.setText(data);
 	}
@@ -43,7 +51,7 @@ public class CheckoutWindow extends Stage implements CoWindow {
 		messageBar.setText("");
 	}
 
-	private boolean isInitialized = false;
+
 	@Override
 	public void init() {
 		GridPane grid = new GridPane();
@@ -181,6 +189,27 @@ public class CheckoutWindow extends Stage implements CoWindow {
 	public void isInitialized(boolean val) {
 		isInitialized = val;
 
+	}
+
+
+	@Override
+	public void setMenuItem(MenuItem x) {
+		// TODO Auto-generated method stub
+
+	}
+
+
+	@Override
+	public MenuItem getMenuItem() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public boolean isAllowed(Auth x) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

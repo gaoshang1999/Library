@@ -5,6 +5,7 @@ import java.util.List;
 import business.ControllerInterface;
 import business.NotExistsException;
 import business.SystemController;
+import dataaccess.Auth;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -25,7 +26,7 @@ import javafx.scene.text.Text;
 import library.domain.CheckoutTableData;
 import newui.Start;
 
-public class CheckoutPane {
+public class CheckoutPane extends OurStage{
 	public static final CheckoutPane INSTANCE = new CheckoutPane();
 
 	private TableView table = new TableView();
@@ -42,7 +43,9 @@ public class CheckoutPane {
 		messageBar.setText("");
 	}
 
-	private CheckoutPane() {}
+	private CheckoutPane() {
+		accessLevel = Auth.LIBRARIAN;
+	}
 
 	public Pane initPane() {
 		GridPane grid = new GridPane();
@@ -88,7 +91,7 @@ public class CheckoutPane {
 				}
         	}
         });
-		
+
 		searchBtn.fire();
 
         HBox hSearch = new HBox(10);
@@ -156,4 +159,7 @@ public class CheckoutPane {
 
 		return grid;
 	}
+
+
+
 }

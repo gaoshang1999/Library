@@ -4,6 +4,7 @@ import business.Address;
 import business.ControllerInterface;
 import business.LibraryMember;
 import business.SystemController;
+import dataaccess.Auth;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -20,7 +21,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import newui.Start;
 
-public class AddLibraryMemberPane {
+public class AddLibraryMemberPane extends OurStage{
 	public static final AddLibraryMemberPane INSTANCE = new AddLibraryMemberPane();
 
 
@@ -33,8 +34,10 @@ public class AddLibraryMemberPane {
 	public void clear() {
 		messageBar.setText("");
 	}
-	
-	private AddLibraryMemberPane() {}
+
+	private AddLibraryMemberPane() {
+		accessLevel = Auth.ADMIN;
+	}
 
 	public Pane initPane() {
 		GridPane grid = new GridPane();

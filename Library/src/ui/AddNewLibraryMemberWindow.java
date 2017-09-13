@@ -3,11 +3,7 @@ package ui;
 import business.Address;
 import business.ControllerInterface;
 import business.LibraryMember;
-<<<<<<< HEAD
-import business.LoginException;
-import business.Person;
-=======
->>>>>>> mleung/master
+
 import business.SystemController;
 import dataaccess.Auth;
 import javafx.event.ActionEvent;
@@ -27,12 +23,10 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class AddNewLibraryMemberWindow extends Stage implements LibWindow {
+public class AddNewLibraryMemberWindow extends OurStage implements LibWindow {
 	public static final AddNewLibraryMemberWindow INSTANCE = new AddNewLibraryMemberWindow();
 
-	private Auth accessLevel = Auth.ADMIN;
-	private boolean isInitialized = false;
-	private MenuItem mItem=null;
+
 	public boolean isInitialized() {
 		return isInitialized;
 	}
@@ -44,7 +38,9 @@ public class AddNewLibraryMemberWindow extends Stage implements LibWindow {
 		messageBar.setText("");
 	}
 
-    private AddNewLibraryMemberWindow () {}
+    private AddNewLibraryMemberWindow () {
+    	accessLevel = Auth.ADMIN;
+    }
     public void init() {
 
         GridPane grid = new GridPane();
@@ -176,13 +172,10 @@ public class AddNewLibraryMemberWindow extends Stage implements LibWindow {
 
         			Address add = new Address(streetTextField.getText(), cityTextField.getText(),
 							stateTextField.getText(), zipTextField.getText());
-<<<<<<< HEAD
+
         			LibraryMember per = new LibraryMember(memberIdTextField.getText(), firstNameTextField.getText(),
         					lastNameTextField.getText(), telephoneTextField.getText(), add);
-=======
-        			LibraryMember per = new LibraryMember(memberIdTextField.getText(), firstNameTextField.getText(), lastNameTextField.getText(), telephoneTextField.getText(), add);
 
->>>>>>> mleung/master
         			c.addNewMember(per);
         			messageBar.setFill(Start.Colors.green);
              	    messageBar.setText("Member Created successfuly");
@@ -219,7 +212,7 @@ public class AddNewLibraryMemberWindow extends Stage implements LibWindow {
         setScene(scene);
 
     }
-<<<<<<< HEAD
+
 	@Override
 	public boolean isAllowed(Auth x) {
 		// TODO Auto-generated method stub
@@ -236,23 +229,5 @@ public class AddNewLibraryMemberWindow extends Stage implements LibWindow {
 	public MenuItem getMenuItem(){
 		return mItem;
 	}
-=======
-//	@Override
-//	public boolean isAllowed(Auth x) {
-//		// TODO Auto-generated method stub
-//		return true;
-//	}
-//
-//	@Override
-//	public void setMenuItem(MenuItem x){
-//		mItem = x;
-//	}
-//
-//	@Override
-//	public MenuItem getMenuItem(){
-//		return mItem;
-//	}
->>>>>>> mleung/master
-
 
 }
