@@ -114,6 +114,7 @@ public class CheckoutPane {
         dueDateCol.setCellValueFactory(
                 new PropertyValueFactory<>("dueDate"));
 
+        table.getColumns().clear();
         table.getColumns().addAll(memberIdCol, isbnCol, copyNumberCol,checkoutDateCol,dueDateCol);
         grid.add(table, 0,2);
 
