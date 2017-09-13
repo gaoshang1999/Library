@@ -52,6 +52,8 @@ public class MainWindow extends Stage {
 	        Button checkOutBtn = (Button )root.lookup("#checkOutBtn");
 	        Button logoutBtn = (Button )root.lookup("#logoutBtn");
 
+	        Button isOverduetBtn = (Button )root.lookup("#isOverduetBtn");
+
 	        if(SystemController.currentAuth == Auth.ADMIN){
 	        	VBox.getChildren().remove(checkOutBtn);
 	        }else if(SystemController.currentAuth == Auth.LIBRARIAN){
@@ -125,6 +127,14 @@ public class MainWindow extends Stage {
 	            }
 			});
 
+	        isOverduetBtn.setOnAction(new EventHandler<ActionEvent>() {
+	            @Override
+	            public void handle(ActionEvent e) {
+	            	p.getChildren().clear();
+	                p.add(OverduePane.INSTANCE.initPane(), 0, 0, 2, 1);
+	            }
+			});
+
 	        logoutBtn.setOnAction(new EventHandler<ActionEvent>() {
 	            @Override
 	            public void handle(ActionEvent e) {
@@ -136,7 +146,7 @@ public class MainWindow extends Stage {
 	            }
 			});
 
-	        bookBtn.fire();
+//	        bookBtn.fire();
 	        this.setScene(scene);
 
 	        //https://stackoverflow.com/questions/9861178/javafx-primarystage-remove-windows-borders

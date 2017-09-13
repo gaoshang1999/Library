@@ -48,11 +48,11 @@ public class SystemController implements ControllerInterface {
 	}
 
 	@Override
-	public void addNewMember(LibraryMember per){ 
-		DataAccess da = new DataAccessFacade(); 
-		da.saveNewMember(per); 
-	} 
-	
+	public void addNewMember(LibraryMember per){
+		DataAccess da = new DataAccessFacade();
+		da.saveNewMember(per);
+	}
+
 	@Override
 	public int addBookCopy(String isbn) throws AuthException, NotExistsException {
 		System.out.println(this.currentAuth);
@@ -146,5 +146,26 @@ public class SystemController implements ControllerInterface {
 		return retVal;
 	}
 
+
+	@Override
+	public List<CheckoutTableData> readCheckoutsByIsbn(String isbn) throws NotExistsException {
+		// TODO Auto-generated method stub
+		DataAccess da = new DataAccessFacade();
+		List<CheckoutTableData> retVal = new ArrayList<>();
+
+		List<CheckoutTableData> allCheckOut = readAllCheckouts();
+//		HashMap<String, Book> bookMap = da.readBooksMap();
+
+		for(CheckoutTableData ck : allCheckOut){
+			if( ck.getIsbn().equals(isbn)){
+                if(LocalDate.now().isAfter(ck.getDueDate())){
+                	ck.setOverdue(true);
+                }
+				retVal.add(ck);
+			}
+		}
+
+		return retVal;
+	}
 
 }

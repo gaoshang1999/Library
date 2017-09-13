@@ -5,6 +5,7 @@
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
@@ -26,6 +27,7 @@
                 <Button id="addBookCopyBtn" mnemonicParsing="false" opacity="1.0" prefWidth="141.0" text="Add Book Copy" textFill="RED" textOverrun="CENTER_ELLIPSIS" />
                 <Button id="addLibraryMemberBtn" mnemonicParsing="false" opacity="1.0" prefWidth="141.0" text="Add Library Member" textFill="RED" textOverrun="CENTER_ELLIPSIS" />
                 <Button id="checkOutBtn" mnemonicParsing="false" opacity="1.0" prefWidth="141.0" text="Check Out" textFill="RED" textOverrun="CENTER_ELLIPSIS" />
+                <Button id="isOverduetBtn" mnemonicParsing="false" opacity="1.0" prefWidth="141.0" text="Is Overdue" textFill="RED" textOverrun="CENTER_ELLIPSIS" />
               </children>
             </VBox>
             <Button id="logoutBtn" layoutX="14.0" layoutY="355.0" mnemonicParsing="false" opacity="1.0" prefWidth="141.0" text="Log Out" textFill="RED" textOverrun="CENTER_ELLIPSIS" />
@@ -36,6 +38,20 @@
         <URL value="@left.css" />
       </stylesheets>
     </AnchorPane>
-    <GridPane id="main" layoutX="169.0" layoutY="0.0" prefHeight="390.0" prefWidth="612.0" />
+    <GridPane id="main" layoutX="169.0" layoutY="0.0" prefHeight="390.0" prefWidth="582.0">
+      <children>
+        <ImageView fitHeight="393.51667639300854" fitWidth="582.0001220703125" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="0">
+          <image>
+            <Image url="@../ui/library.jpg" />
+          </image>
+        </ImageView>
+      </children>
+      <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+      </columnConstraints>
+      <rowConstraints>
+        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+      </rowConstraints>
+    </GridPane>
   </children>
 </AnchorPane>
