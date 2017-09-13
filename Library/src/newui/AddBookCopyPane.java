@@ -39,7 +39,7 @@ public class AddBookCopyPane {
 	public Pane initPane() {
 		GridPane grid = new GridPane();
 		grid.setId("top-container");
-		grid.setAlignment(Pos.CENTER);
+		grid.setAlignment(Pos.TOP_LEFT);
         grid.setHgap(10);
         grid.setVgap(10);
         grid.setPadding(new Insets(25, 25, 25, 25));
