@@ -10,7 +10,7 @@ import java.util.List;
 
 import business.ControllerInterface;
 import business.SystemController;
-import javafx.application.Application;
+import dataaccess.Auth;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -19,7 +19,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -43,14 +43,22 @@ public class MainWindow extends Stage {
 	        Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
 
 	        Scene scene = new Scene(root);
+	        VBox VBox = (VBox )root.lookup("#VBox");
 
 	        Button bookBtn = (Button )root.lookup("#bookBtn");
 	        Button memBtn = (Button )root.lookup("#memBtn");
 	        Button addBookCopyBtn = (Button )root.lookup("#addBookCopyBtn");
 	        Button addLibraryMemberBtn = (Button )root.lookup("#addLibraryMemberBtn");
 	        Button checkOutBtn = (Button )root.lookup("#checkOutBtn");
-	        
 	        Button logoutBtn = (Button )root.lookup("#logoutBtn");
+
+	        if(SystemController.currentAuth == Auth.ADMIN){
+	        	VBox.getChildren().remove(checkOutBtn);
+	        }else if(SystemController.currentAuth == Auth.LIBRARIAN){
+	        	VBox.getChildren().remove(addBookCopyBtn);
+	        	VBox.getChildren().remove(addLibraryMemberBtn);
+	        }
+
 
 	        GridPane  p = (GridPane )root.lookup("#main");
 
@@ -108,7 +116,7 @@ public class MainWindow extends Stage {
 	                p.add(AddLibraryMemberPane.INSTANCE.initPane(), 0, 0);
 	            }
 			});
-	        
+
 	        checkOutBtn.setOnAction(new EventHandler<ActionEvent>() {
 	            @Override
 	            public void handle(ActionEvent e) {
