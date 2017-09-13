@@ -3,6 +3,7 @@ package ui;
 import business.Address;
 import business.ControllerInterface;
 import business.LibraryMember;
+
 import business.SystemController;
 import dataaccess.Auth;
 import javafx.event.ActionEvent;
@@ -22,12 +23,10 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class AddNewLibraryMemberWindow extends Stage implements LibWindow {
+public class AddNewLibraryMemberWindow extends OurStage implements LibWindow {
 	public static final AddNewLibraryMemberWindow INSTANCE = new AddNewLibraryMemberWindow();
 
-	private Auth accessLevel = Auth.ADMIN;
-	private boolean isInitialized = false;
-	private MenuItem mItem=null;
+
 	public boolean isInitialized() {
 		return isInitialized;
 	}
@@ -39,7 +38,9 @@ public class AddNewLibraryMemberWindow extends Stage implements LibWindow {
 		messageBar.setText("");
 	}
 
-    private AddNewLibraryMemberWindow () {}
+    private AddNewLibraryMemberWindow () {
+    	accessLevel = Auth.ADMIN;
+    }
     public void init() {
 
         GridPane grid = new GridPane();
@@ -169,12 +170,11 @@ public class AddNewLibraryMemberWindow extends Stage implements LibWindow {
 
         		try {
 
-        			//c.login(userTextField.getText().trim(), pwBox.getText().trim());
-
-
         			Address add = new Address(streetTextField.getText(), cityTextField.getText(),
 							stateTextField.getText(), zipTextField.getText());
-        			LibraryMember per = new LibraryMember(memberIdTextField.getText(), firstNameTextField.getText(), lastNameTextField.getText(), telephoneTextField.getText(), add);
+
+        			LibraryMember per = new LibraryMember(memberIdTextField.getText(), firstNameTextField.getText(),
+        					lastNameTextField.getText(), telephoneTextField.getText(), add);
 
         			c.addNewMember(per);
         			messageBar.setFill(Start.Colors.green);
@@ -212,21 +212,22 @@ public class AddNewLibraryMemberWindow extends Stage implements LibWindow {
         setScene(scene);
 
     }
-//	@Override
-//	public boolean isAllowed(Auth x) {
-//		// TODO Auto-generated method stub
-//		return true;
-//	}
-//
-//	@Override
-//	public void setMenuItem(MenuItem x){
-//		mItem = x;
-//	}
-//
-//	@Override
-//	public MenuItem getMenuItem(){
-//		return mItem;
-//	}
 
+	@Override
+	public boolean isAllowed(Auth x) {
+		// TODO Auto-generated method stub
+		if(accessLevel.equals(x)  || accessLevel.equals(Auth.BOTH)) return true;
+		return true;
+	}
+
+	@Override
+	public void setMenuItem(MenuItem x){
+		mItem = x;
+	}
+
+	@Override
+	public MenuItem getMenuItem(){
+		return mItem;
+	}
 
 }
