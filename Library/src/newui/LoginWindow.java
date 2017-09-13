@@ -47,6 +47,8 @@ public class LoginWindow extends Stage{
 	        grid.setHgap(10);
 	        grid.setVgap(10);
 	        grid.setPadding(new Insets(25, 25, 25, 25));
+	        grid.setMinWidth(400);
+	        setTitle("Library Management System");
 
 	        Text scenetitle = new Text("Login");
 	        scenetitle.setFont(Font.font("Lucida Grande", FontWeight.NORMAL, 20)); //Tahoma

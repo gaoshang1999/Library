@@ -23,6 +23,7 @@
               <children>
                 <Button id="bookBtn" mnemonicParsing="false" opacity="1.0" prefWidth="141.0" text="List All Books" textFill="RED" textOverrun="CENTER_ELLIPSIS" />
                 <Button id="memBtn" mnemonicParsing="false" opacity="1.0" prefWidth="141.0" text="List All Members" textFill="RED" textOverrun="CENTER_ELLIPSIS" />
+                <Button id="addBookBtn" mnemonicParsing="false" opacity="1.0" prefWidth="141.0" text="Add Book" textFill="RED" textOverrun="CENTER_ELLIPSIS" />
                 <Button id="addBookCopyBtn" mnemonicParsing="false" opacity="1.0" prefWidth="141.0" text="Add Book Copy" textFill="RED" textOverrun="CENTER_ELLIPSIS" />
                 <Button id="addLibraryMemberBtn" mnemonicParsing="false" opacity="1.0" prefWidth="141.0" text="Add Library Member" textFill="RED" textOverrun="CENTER_ELLIPSIS" />
                 <Button id="checkOutBtn" mnemonicParsing="false" opacity="1.0" prefWidth="141.0" text="Check Out" textFill="RED" textOverrun="CENTER_ELLIPSIS" />

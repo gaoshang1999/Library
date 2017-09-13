@@ -45,6 +45,7 @@ public class MainWindow extends Stage {
 
         Button bookBtn = (Button )root.lookup("#bookBtn");
         Button memBtn = (Button )root.lookup("#memBtn");
+        Button addBookBtn = (Button )root.lookup("#addBookBtn");
         Button addBookCopyBtn = (Button )root.lookup("#addBookCopyBtn");
         Button addLibraryMemberBtn = (Button )root.lookup("#addLibraryMemberBtn");
         Button checkOutBtn = (Button )root.lookup("#checkOutBtn");
@@ -77,6 +78,15 @@ public class MainWindow extends Stage {
             public void handle(ActionEvent e) {
             	p.getChildren().clear();
                 p.add(AllMembersPane.INSTANCE.initPane(), 0, 0);
+            }
+		});
+
+        addBookBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+            	p.getChildren().clear();
+                p.add(AddBookPane.INSTANCE.initPane(), 0, 0);
+
             }
 		});
 
