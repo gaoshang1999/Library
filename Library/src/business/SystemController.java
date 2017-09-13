@@ -48,6 +48,22 @@ public class SystemController implements ControllerInterface {
 	}
 
 	@Override
+	public List<Book> allBooks(){
+		DataAccess da = new DataAccessFacade();
+		List<Book> retval = new ArrayList<>();
+		retval.addAll(da.readBooksMap().values());
+		return retval;
+	}
+
+	@Override
+	public List<LibraryMember> allLibraryMembers(){
+		DataAccess da = new DataAccessFacade();
+		List<LibraryMember> retval = new ArrayList<>();
+		retval.addAll(da.readMemberMap().values());
+		return retval;
+	}
+
+	@Override
 	public void addNewMember(LibraryMember per){
 		DataAccess da = new DataAccessFacade();
 		da.saveNewMember(per);

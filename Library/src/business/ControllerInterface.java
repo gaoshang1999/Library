@@ -23,4 +23,6 @@ public interface ControllerInterface {
 
 	public List<CheckoutTableData> readCheckoutsByIsbn(String isbn) throws NotExistsException;
 
+	public List<Book> allBooks();
+	public List<LibraryMember> allLibraryMembers();
 }

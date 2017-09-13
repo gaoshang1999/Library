@@ -71,16 +71,6 @@ public class MainWindow extends Stage {
 	            public void handle(ActionEvent e) {
 	            	p.getChildren().clear();
 	                p.add(AllBooksPane.INSTANCE.initPane(), 0, 0);
-
-					ControllerInterface ci = new SystemController();
-					List<String> ids = ci.allBookIds();
-					Collections.sort(ids);
-					StringBuilder sb = new StringBuilder();
-					for(String s: ids) {
-						sb.append(s + "\n");
-					}
-					AllBooksPane.INSTANCE.setData(sb.toString());
-
 	            }
 			});
 
@@ -89,17 +79,6 @@ public class MainWindow extends Stage {
 	            public void handle(ActionEvent e) {
 	            	p.getChildren().clear();
 	                p.add(AllMembersPane.INSTANCE.initPane(), 0, 0);
-
-	                ControllerInterface ci = new SystemController();
-					List<String> ids = ci.allMemberIds();
-					Collections.sort(ids);
-					System.out.println(ids);
-					StringBuilder sb = new StringBuilder();
-					for(String s: ids) {
-						sb.append(s + "\n");
-					}
-					AllMembersPane.INSTANCE.setData(sb.toString());
-
 	            }
 			});
 
