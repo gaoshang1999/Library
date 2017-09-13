@@ -48,11 +48,11 @@ public class SystemController implements ControllerInterface {
 	}
 
 	@Override
-	public void addNewMember(LibraryMember per){ 
-		DataAccess da = new DataAccessFacade(); 
-		da.saveNewMember(per); 
-	} 
-	
+	public void addNewMember(LibraryMember per){
+		DataAccess da = new DataAccessFacade();
+		da.saveNewMember(per);
+	}
+
 	@Override
 	public int addBookCopy(String isbn) throws AuthException, NotExistsException {
 		System.out.println(this.currentAuth);
@@ -96,6 +96,9 @@ public class SystemController implements ControllerInterface {
 			da.saveBook(book);
 			return retVal;
 		} catch (NoSuchElementException e) {
+			throw new NotExistsException();
+		}
+		catch (NullPointerException e) {
 			throw new NotExistsException();
 		}
 	}

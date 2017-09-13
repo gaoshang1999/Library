@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -19,6 +20,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -70,26 +72,24 @@ public class CheckoutPane {
         				List<CheckoutTableData> tableData = sc.readCheckoutsByMemberId(searchTextField.getText().trim());
     					//System.out.println(data);
     					table.setItems(FXCollections.observableArrayList(tableData));
-    					messageBar.setFill(Start.Colors.green);
-                 	    messageBar.setText("Checkouts has been retrieved");
+                 	   setMessageBar("Checkouts has been retrieved.",Start.Colors.green);
         			}
         			else
         			{
         				List<CheckoutTableData> tableData = sc.readAllCheckouts();
         				table.setItems(FXCollections.observableArrayList(tableData));
-    					messageBar.setFill(Start.Colors.green);
-                 	    messageBar.setText("All Checkouts has been retrieved");
+                 	   setMessageBar("All Checkouts has been retrieved.",Start.Colors.green);
         			}
 
         		} catch (NotExistsException e1) {
 					// TODO Auto-generated catch block
-					messageBar.setFill(Start.Colors.red);
-             	    messageBar.setText("ID doesn't exist.");
+        			setMessageBar("ID doesn't exist.",Start.Colors.red);
 				}
         	}
         });
-		
+
 		searchBtn.fire();
+		messageBar.setVisible(false);
 
         HBox hSearch = new HBox(10);
         hSearch.setAlignment(Pos.BOTTOM_LEFT);
@@ -138,12 +138,10 @@ public class CheckoutPane {
 					CheckoutTableData data = sc.checkoutBook(memberIdTextField.getText().trim(), isbnTextField.getText().trim());
 					//System.out.println(data);
 					table.getItems().add(data);
-					messageBar.setFill(Start.Colors.green);
-             	    messageBar.setText("Book has been checked out");
+             	   setMessageBar("Book has been checked out.",Start.Colors.green);
         		} catch (NotExistsException e1) {
 					// TODO Auto-generated catch block
-					messageBar.setFill(Start.Colors.red);
-             	    messageBar.setText("Book or member ID doesn't exist.");
+             	   setMessageBar("Book or member ID doesn't exist.",Start.Colors.red);
 				}
         	}
         });
@@ -154,6 +152,17 @@ public class CheckoutPane {
         hAddPart.getChildren().addAll(memberIdLabel,memberIdTextField,isbnLabel,isbnTextField,addBtn);
         grid.add(hAddPart, 0, 3);
 
+        HBox hBack = new HBox(10);
+        hBack.setAlignment(Pos.BOTTOM_LEFT);
+        hBack.getChildren().addAll(messageBar);
+        grid.add(hBack, 0, 4);
+
 		return grid;
+	}
+
+	private void setMessageBar(String text,Paint color ){
+		messageBar.setVisible(true);
+		messageBar.setFill(color);
+ 	    messageBar.setText(text);
 	}
 }
