@@ -113,7 +113,7 @@ public class MainWindow extends Stage {
 	            @Override
 	            public void handle(ActionEvent e) {
 	            	p.getChildren().clear();
-	                p.add(CheckoutPane.INSTANCE.initPane(), 0, 0, 3, 1);
+	                p.add(CheckoutPane.INSTANCE.initPane(), 0, 0, 2, 1);
 	            }
 			});
 
