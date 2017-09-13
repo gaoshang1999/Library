@@ -6,40 +6,44 @@ import java.io.Serializable;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import business.Book;
 import business.BookCopy;
 import business.LibraryMember;
+import business.NotExistsException;
 import dataaccess.DataAccessFacade.StorageType;
+import library.domain.CheckoutRecordEntry;
 
 
 public class DataAccessFacade implements DataAccess {
-	
+
 	enum StorageType {
 		BOOKS, MEMBERS, USERS;
 	}
-	
-	public static final String OUTPUT_DIR = System.getProperty("user.dir") 
+
+	public static final String OUTPUT_DIR = System.getProperty("user.dir")
 			+ "\\src\\dataaccess\\storage";
 	public static final String DATE_PATTERN = "MM/dd/yyyy";
-	
+
 	//implement: other save operations
 	public void saveNewMember(LibraryMember member) {
 		HashMap<String, LibraryMember> mems = readMemberMap();
 		String memberId = member.getMemberId();
 		mems.put(memberId, member);
-		saveToStorage(StorageType.MEMBERS, mems);	
+		saveToStorage(StorageType.MEMBERS, mems);
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public  HashMap<String,Book> readBooksMap() {
 		//Returns a Map with name/value pairs being
 		//   isbn -> Book
 		return (HashMap<String,Book>) readFromStorage(StorageType.BOOKS);
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public HashMap<String, LibraryMember> readMemberMap() {
 		//Returns a Map with name/value pairs being
@@ -47,23 +51,23 @@ public class DataAccessFacade implements DataAccess {
 		return (HashMap<String, LibraryMember>) readFromStorage(
 				StorageType.MEMBERS);
 	}
-	
-	
+
+
 	@SuppressWarnings("unchecked")
 	public HashMap<String, User> readUserMap() {
 		//Returns a Map with name/value pairs being
 		//   userId -> User
 		return (HashMap<String, User>)readFromStorage(StorageType.USERS);
 	}
-	
-	
-	 
-	
-	
+
+
+
+
+
 	/////load methods - these place test data into the storage area
-	///// - used just once at startup  
+	///// - used just once at startup
 	//static void loadMemberMap(List<LibraryMember> memberList) {
-		
+
 	static void loadBookMap(List<Book> bookList) {
 		HashMap<String, Book> books = new HashMap<String, Book>();
 		bookList.forEach(book -> books.put(book.getIsbn(), book));
@@ -74,13 +78,13 @@ public class DataAccessFacade implements DataAccess {
 		userList.forEach(user -> users.put(user.getId(), user));
 		saveToStorage(StorageType.USERS, users);
 	}
- 
+
 	static void loadMemberMap(List<LibraryMember> memberList) {
 		HashMap<String, LibraryMember> members = new HashMap<String, LibraryMember>();
 		memberList.forEach(member -> members.put(member.getMemberId(), member));
 		saveToStorage(StorageType.MEMBERS, members);
 	}
-	
+
 	static void saveToStorage(StorageType type, Object ob) {
 		ObjectOutputStream out = null;
 		try {
@@ -97,7 +101,7 @@ public class DataAccessFacade implements DataAccess {
 			}
 		}
 	}
-	
+
 	static Object readFromStorage(StorageType type) {
 		ObjectInputStream in = null;
 		Object retVal = null;
@@ -116,18 +120,18 @@ public class DataAccessFacade implements DataAccess {
 		}
 		return retVal;
 	}
-	
-	
-	
+
+
+
 	final static class Pair<S,T> implements Serializable{
-		
+
 		S first;
 		T second;
 		Pair(S s, T t) {
 			first = s;
 			second = t;
 		}
-		@Override 
+		@Override
 		public boolean equals(Object ob) {
 			if(ob == null) return false;
 			if(this == ob) return true;
@@ -136,8 +140,8 @@ public class DataAccessFacade implements DataAccess {
 			Pair<S,T> p = (Pair<S,T>)ob;
 			return p.first.equals(first) && p.second.equals(second);
 		}
-		
-		@Override 
+
+		@Override
 		public int hashCode() {
 			return first.hashCode() + 5 * second.hashCode();
 		}
@@ -152,10 +156,28 @@ public class DataAccessFacade implements DataAccess {
 
 	@Override
 	public void saveBook(Book book) {
-		HashMap<String, Book> map = readBooksMap();		 
+		HashMap<String, Book> map = readBooksMap();
 		map.put(book.getIsbn(), book);
-		saveToStorage(StorageType.BOOKS, map);	
-		
+		saveToStorage(StorageType.BOOKS, map);
+
 	}
-	
+
+	@Override
+	public LibraryMember searchMember(String memberId) throws NotExistsException {
+		Map<String,LibraryMember> membersHashMap = readMemberMap();
+		LibraryMember member = membersHashMap.get(memberId);
+		if(member == null)
+			throw new NotExistsException();
+		return member;
+	}
+
+
+	@Override
+	public Book searchBook(String isbn) {
+		Map<String,Book> booksHashMap = readBooksMap();
+		return booksHashMap.get(isbn);
+	}
+
+
+
 }

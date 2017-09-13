@@ -1,62 +1,52 @@
-package ui;
+package newui;
 
 import business.Address;
 import business.ControllerInterface;
 import business.LibraryMember;
-<<<<<<< HEAD
-import business.LoginException;
-import business.Person;
-=======
->>>>>>> mleung/master
 import business.SystemController;
-import dataaccess.Auth;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
+import newui.Start;
 
-public class AddNewLibraryMemberWindow extends Stage implements LibWindow {
-	public static final AddNewLibraryMemberWindow INSTANCE = new AddNewLibraryMemberWindow();
+public class AddLibraryMemberPane {
+	public static final AddLibraryMemberPane INSTANCE = new AddLibraryMemberPane();
 
-	private Auth accessLevel = Auth.ADMIN;
-	private boolean isInitialized = false;
-	private MenuItem mItem=null;
-	public boolean isInitialized() {
-		return isInitialized;
+
+	private TextField isbn;
+	public String getIsbn() {
+		return this.isbn.getText().trim();
 	}
-	public void isInitialized(boolean val) {
-		isInitialized = val;
-	}
+
 	private Text messageBar = new Text();
 	public void clear() {
 		messageBar.setText("");
 	}
+	
+	private AddLibraryMemberPane() {}
 
-    private AddNewLibraryMemberWindow () {}
-    public void init() {
-
-        GridPane grid = new GridPane();
+	public Pane initPane() {
+		GridPane grid = new GridPane();
         grid.setId("top-container");
         grid.setAlignment(Pos.CENTER);
         grid.setHgap(10);
         grid.setVgap(10);
         grid.setPadding(new Insets(25, 25, 25, 25));
 
-        Text scenetitle = new Text("Add Member");
-        setTitle("Add New Library Member");
-        scenetitle.setFont(Font.font("Harlow Solid Italic", FontWeight.NORMAL, 20)); //Tahoma
+        Text scenetitle = new Text("Add New Library Member");
+//        setTitle("Add New Library Member");
+        scenetitle.setFont(Font.font("Lucida Grande", FontWeight.NORMAL, 20)); //Tahoma
         grid.add(scenetitle, 0, 0, 2, 1);
 
         Label memberId = new Label("Member ID:");
@@ -174,15 +164,13 @@ public class AddNewLibraryMemberWindow extends Stage implements LibWindow {
 
         		try {
 
+        			//c.login(userTextField.getText().trim(), pwBox.getText().trim());
+
+
         			Address add = new Address(streetTextField.getText(), cityTextField.getText(),
 							stateTextField.getText(), zipTextField.getText());
-<<<<<<< HEAD
-        			LibraryMember per = new LibraryMember(memberIdTextField.getText(), firstNameTextField.getText(),
-        					lastNameTextField.getText(), telephoneTextField.getText(), add);
-=======
         			LibraryMember per = new LibraryMember(memberIdTextField.getText(), firstNameTextField.getText(), lastNameTextField.getText(), telephoneTextField.getText(), add);
 
->>>>>>> mleung/master
         			c.addNewMember(per);
         			messageBar.setFill(Start.Colors.green);
              	    messageBar.setText("Member Created successfuly");
@@ -192,67 +180,9 @@ public class AddNewLibraryMemberWindow extends Stage implements LibWindow {
         			messageBar.setText("Error! " + ex.getMessage());
         		}
 
-
-        		Menu parent = mItem.getParentMenu();
-        		parent.getItems().clear();
-//        		parent.getItems().addAll(Start.getAllowedWindows());
-
-        		//mItem.getParentMenu().getItems().addA
-
         	}
         });
 
-        Button backBtn = new Button("<= Back to Main");
-        backBtn.setOnAction(new EventHandler<ActionEvent>() {
-        	@Override
-        	public void handle(ActionEvent e) {
-        		Start.hideAllWindows();
-        		Start.primStage().show();
-        	}
-        });
-        HBox hBack = new HBox(10);
-        hBack.setAlignment(Pos.BOTTOM_LEFT);
-        hBack.getChildren().add(backBtn);
-        grid.add(hBack, 0, 9);
-        Scene scene = new Scene(grid);
-        scene.getStylesheets().add(getClass().getResource("library.css").toExternalForm());
-        setScene(scene);
-
-    }
-<<<<<<< HEAD
-	@Override
-	public boolean isAllowed(Auth x) {
-		// TODO Auto-generated method stub
-		if(accessLevel.equals(x)  || accessLevel.equals(Auth.BOTH)) return true;
-		return true;
+		return grid;
 	}
-
-	@Override
-	public void setMenuItem(MenuItem x){
-		mItem = x;
-	}
-
-	@Override
-	public MenuItem getMenuItem(){
-		return mItem;
-	}
-=======
-//	@Override
-//	public boolean isAllowed(Auth x) {
-//		// TODO Auto-generated method stub
-//		return true;
-//	}
-//
-//	@Override
-//	public void setMenuItem(MenuItem x){
-//		mItem = x;
-//	}
-//
-//	@Override
-//	public MenuItem getMenuItem(){
-//		return mItem;
-//	}
->>>>>>> mleung/master
-
-
 }
