@@ -1,12 +1,8 @@
 package business;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import business.Book;
-import dataaccess.DataAccess;
-import dataaccess.DataAccessFacade;
-import library.domain.CheckoutRecordEntry;
 import library.domain.CheckoutTableData;
 
 public interface ControllerInterface {
@@ -15,6 +11,7 @@ public interface ControllerInterface {
 	public List<String> allBookIds();
 
 	public void addNewMember(LibraryMember per);
+	public void addNewAuthor(Author auth);
 	public int addBookCopy(String isbn) throws AuthException, NotExistsException;
 
 	public CheckoutTableData checkoutBook(String memberId,String isbn) throws NotExistsException;
@@ -25,4 +22,8 @@ public interface ControllerInterface {
 
 	public List<Book> allBooks();
 	public List<LibraryMember> allLibraryMembers();
+
+	public LibraryMember searchMember(String memberId) throws NotExistsException;
+	public Author searchAuthor(Author auth);
+	public void addBook(Book newBook);
 }

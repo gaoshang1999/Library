@@ -70,10 +70,15 @@ public class SystemController implements ControllerInterface {
 		da.saveNewMember(per);
 	}
 
+	public void addBook(Book xx){
+		DataAccess da = new DataAccessFacade();
+
+		da.saveBook(xx);
+	}
 	@Override
 	public int addBookCopy(String isbn) throws AuthException, NotExistsException {
-		System.out.println(this.currentAuth);
-		if (null == this.currentAuth || this.currentAuth == Auth.LIBRARIAN) {
+		//System.out.println(SystemController.currentAuth);
+		if (null == SystemController.currentAuth || SystemController.currentAuth == Auth.LIBRARIAN) {
 			throw new AuthException();
 		}
 
@@ -186,6 +191,33 @@ public class SystemController implements ControllerInterface {
 		}
 
 		return retVal;
+	}
+
+	@Override
+	public LibraryMember searchMember(String memberId) throws NotExistsException {
+		// TODO Auto-generated method stub
+		DataAccess da = new DataAccessFacade();
+		return da.searchMember(memberId);
+		//return null;
+	}
+
+	@Override
+	public Author searchAuthor(Author auth)  {
+		// TODO Auto-generated method stub
+		DataAccess da = new DataAccessFacade();
+		try {
+			return da.searchAuthor(auth);
+		}catch(Exception ex){
+			return null;
+		}
+		//return null;
+	}
+
+	@Override
+	public void addNewAuthor(Author auth) {
+		// TODO Auto-generated method stub
+		DataAccess da = new DataAccessFacade();
+		da.saveNewAuthor(auth);
 	}
 
 }

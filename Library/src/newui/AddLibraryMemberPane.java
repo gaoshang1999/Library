@@ -3,6 +3,7 @@ package newui;
 import business.Address;
 import business.ControllerInterface;
 import business.LibraryMember;
+import business.NotExistsException;
 import business.SystemController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -33,7 +34,7 @@ public class AddLibraryMemberPane {
 	public void clear() {
 		messageBar.setText("");
 	}
-	
+
 	private AddLibraryMemberPane() {}
 
 	public Pane initPane() {
@@ -155,11 +156,17 @@ public class AddLibraryMemberPane {
         		}
 
         		ControllerInterface c = new SystemController();
-    			if(c.allMemberIds().contains(memberIdTextField.getText())){
-    				messageBar.setFill(Start.Colors.red);
-        			messageBar.setText("Error! " + "Member Id already exists");
-        			return;
-    			}
+
+    			try {
+					if(c.searchMember(memberId.getText()) != null){
+						messageBar.setFill(Start.Colors.red);
+						messageBar.setText("Error! " + "Member Id already exists");
+						return;
+					}
+				} catch (NotExistsException e1) {
+					// TODO Auto-generated catch block
+					//e1.printStackTrace();
+				}
 
 
         		try {
