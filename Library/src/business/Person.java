@@ -38,4 +38,9 @@ public class Person implements Serializable {
 	public void setAddress(Address address) {
 		this.address = address;
 	}
+
+	@Override
+	public String toString() {
+		return "[firstName=" + firstName + ", lastName=" + lastName + "]";
+	}
 }
