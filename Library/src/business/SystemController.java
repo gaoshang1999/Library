@@ -11,6 +11,8 @@ import dataaccess.Auth;
 import dataaccess.DataAccess;
 import dataaccess.DataAccessFacade;
 import dataaccess.User;
+import javafx.collections.ObservableList;
+import javafx.scene.control.TableView;
 import library.domain.CheckoutRecordEntry;
 import library.domain.CheckoutTableData;
 
@@ -179,7 +181,6 @@ public class SystemController implements ControllerInterface {
 		List<CheckoutTableData> retVal = new ArrayList<>();
 
 		List<CheckoutTableData> allCheckOut = readAllCheckouts();
-//		HashMap<String, Book> bookMap = da.readBooksMap();
 
 		for(CheckoutTableData ck : allCheckOut){
 			if( ck.getIsbn().equals(isbn)){
@@ -189,7 +190,28 @@ public class SystemController implements ControllerInterface {
 				retVal.add(ck);
 			}
 		}
+		if(retVal.isEmpty()) {
+			throw new NotExistsException();
+		}
+		return retVal;
+	}
+	
+	@Override
+	public List<CheckoutTableData> readAllCheckoutsWithOverdue() throws NotExistsException{
+		DataAccess da = new DataAccessFacade();
+		List<CheckoutTableData> retVal = new ArrayList<>();
 
+		List<CheckoutTableData> allCheckOut = readAllCheckouts();
+
+		for(CheckoutTableData ck : allCheckOut){			
+            if(LocalDate.now().isAfter(ck.getDueDate())){
+            	ck.setOverdue(true);
+            }
+			retVal.add(ck);			
+		}
+		if(retVal.isEmpty()) {
+			throw new NotExistsException();
+		}
 		return retVal;
 	}
 
@@ -218,6 +240,15 @@ public class SystemController implements ControllerInterface {
 		// TODO Auto-generated method stub
 		DataAccess da = new DataAccessFacade();
 		da.saveNewAuthor(auth);
+  }
+  
+	public void printCheckoutTable(TableView table) {
+		ObservableList<CheckoutTableData> tableData = table.getItems();
+		System.out.println(String.format("%15s \t %15s \t %15s \t %15s \t %15s","Member ID","ISBN","Copy Number", "Checkout Date", "Due Date"));
+		for(CheckoutTableData data : tableData)
+		{
+			System.out.println(String.format("%15s \t %15s \t %15d \t %15s \t %15s",data.getMemberId(),data.getIsbn(),data.getCopyNumber(),data.getCheckoutDate().toString(),data.getDueDate().toString()));
+		}
 	}
 
 }
