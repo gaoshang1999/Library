@@ -11,6 +11,8 @@ import dataaccess.Auth;
 import dataaccess.DataAccess;
 import dataaccess.DataAccessFacade;
 import dataaccess.User;
+import javafx.collections.ObservableList;
+import javafx.scene.control.TableView;
 import library.domain.CheckoutRecordEntry;
 import library.domain.CheckoutTableData;
 
@@ -206,6 +208,16 @@ public class SystemController implements ControllerInterface {
 			throw new NotExistsException();
 		}
 		return retVal;
+	}
+
+	@Override
+	public void printCheckoutTable(TableView table) {
+		ObservableList<CheckoutTableData> tableData = table.getItems();
+		System.out.println(String.format("%15s \t %15s \t %15s \t %15s \t %15s","Member ID","ISBN","Copy Number", "Checkout Date", "Due Date"));
+		for(CheckoutTableData data : tableData)
+		{
+			System.out.println(String.format("%15s \t %15s \t %15d \t %15s \t %15s",data.getMemberId(),data.getIsbn(),data.getCopyNumber(),data.getCheckoutDate().toString(),data.getDueDate().toString()));
+		}
 	}
 
 }

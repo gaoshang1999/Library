@@ -6,6 +6,7 @@ import business.ControllerInterface;
 import business.NotExistsException;
 import business.SystemController;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -88,12 +89,23 @@ public class CheckoutPane {
         	}
         });
 
+        Button printBtn = new Button("Print");
+
+        printBtn.setOnAction(new EventHandler<ActionEvent>() {
+        	@Override
+        	public void handle(ActionEvent e) {
+        		ControllerInterface sc = new SystemController();
+        		sc.printCheckoutTable(table);
+        	}
+        });
+
+
 		searchBtn.fire();
 		messageBar.setVisible(false);
 
         HBox hSearch = new HBox(10);
         hSearch.setAlignment(Pos.BOTTOM_LEFT);
-        hSearch.getChildren().addAll(searchLabel,searchTextField,searchBtn);
+        hSearch.getChildren().addAll(searchLabel,searchTextField,searchBtn,printBtn);
         grid.add(hSearch, 0, 1);
 
         table.setEditable(false);
@@ -150,12 +162,18 @@ public class CheckoutPane {
         HBox hAddPart = new HBox(10);
         hAddPart.setAlignment(Pos.BOTTOM_LEFT);
         hAddPart.getChildren().addAll(memberIdLabel,memberIdTextField,isbnLabel,isbnTextField,addBtn);
-        grid.add(hAddPart, 0, 3);
+        grid.add(hAddPart, 0, 4);
+
+
+//        HBox hPrint = new HBox(10);
+//        hPrint.setAlignment(Pos.BOTTOM_LEFT);
+//        hPrint.getChildren().addAll(printBtn);
+//        grid.add(hPrint, 0, 3);
 
         HBox hBack = new HBox(10);
         hBack.setAlignment(Pos.BOTTOM_LEFT);
         hBack.getChildren().addAll(messageBar);
-        grid.add(hBack, 0, 4);
+        grid.add(hBack, 0, 5);
 
 		return grid;
 	}
