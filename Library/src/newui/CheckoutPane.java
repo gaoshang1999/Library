@@ -62,6 +62,7 @@ public class CheckoutPane {
         TextField searchTextField = new TextField();
 
 		Button searchBtn = new Button("Search");
+		searchBtn.getStyleClass().add("btn-warning");
 		searchBtn.setOnAction(new EventHandler<ActionEvent>() {
         	@Override
         	public void handle(ActionEvent e) {
@@ -128,8 +129,11 @@ public class CheckoutPane {
         grid.setGridLinesVisible(false) ;
 
         TextField isbnTextField = new TextField();
+        HBox messageBox = new HBox(10);
+        messageBox.setAlignment(Pos.CENTER);
 
         Button addBtn = new Button("Add Checkout");
+        addBtn.getStyleClass().add("btn-primary");
         addBtn.setOnAction(new EventHandler<ActionEvent>() {
         	@Override
         	public void handle(ActionEvent e) {
@@ -138,9 +142,11 @@ public class CheckoutPane {
 					CheckoutTableData data = sc.checkoutBook(memberIdTextField.getText().trim(), isbnTextField.getText().trim());
 					//System.out.println(data);
 					table.getItems().add(data);
+					messageBox.getStyleClass().add("alert-success");
              	   setMessageBar("Book has been checked out.",Start.Colors.green);
         		} catch (NotExistsException e1) {
 					// TODO Auto-generated catch block
+        			messageBox.getStyleClass().add("alert-warning");
              	   setMessageBar("Book or member ID doesn't exist.",Start.Colors.red);
 				}
         	}
@@ -152,11 +158,13 @@ public class CheckoutPane {
         hAddPart.getChildren().addAll(memberIdLabel,memberIdTextField,isbnLabel,isbnTextField,addBtn);
         grid.add(hAddPart, 0, 3);
 
-        HBox hBack = new HBox(10);
-        hBack.setAlignment(Pos.BOTTOM_LEFT);
-        hBack.getChildren().addAll(messageBar);
-        grid.add(hBack, 0, 4);
 
+
+        messageBox.getChildren().add(messageBar);
+
+        grid.add(messageBox, 0, 4,5,1);
+
+        messageBar.setText("");
 		return grid;
 	}
 

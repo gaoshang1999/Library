@@ -1,5 +1,110 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
 .left-panel {
     -fx-background-color:  #333;
+
 }
 
+.root, GridPane{
+	-fx-background-image: url('/newui/abstract.jpg');
+	-fx-background-size: stretch;
+}
+
+.button {
+	-fx-stroke-width: 1px;
+	-fx-stroke: transparent;
+	-fx-padding: 0.5em 1em;
+	-fx-font-size: 1em;
+	-fx-text-fill: #333;
+
+}
+
+.button:focus, .button:hover {
+  -fx-text-decoration: none;
+}
+
+
+.btn-primary {
+  -fx-text-fill: #fff;
+  -fx-background-color: #0275d8;
+  -fx-stroke: #0275d8;
+}
+
+.btn-primary:hover {
+  -fx-text-fill: #fff;
+  -fx-background-color: #025aa5;
+  -fx-stroke: #01549b;
+}
+
+.btn-secondary {
+  -fx-text-fill: #292b2c;
+  -fx-background-color: #fff;
+  -fx-stroke: #ccc;
+}
+
+.btn-secondary:hover {
+  -fx-text-fill: #fff;
+  -fx-background-color: #0275d8;
+  -fx-stroke: #0275d8;
+}
+
+.btn-info {
+  -fx-text-fill: #fff;
+  -fx-background-color: #5bc0de;
+  -fx-stroke: #5bc0de;
+}
+
+.btn-info:hover {
+  -fx-text-fill: #fff;
+  -fx-background-color: #31b0d5;
+  -fx-stroke: #2aabd2;
+}
+
+btn-success {
+  -fx-text-fill: #fff;
+  -fx-background-color: #5cb85c;
+  -fx-stroke: #5cb85c;
+}
+
+.btn-success:hover {
+  -fx-text-fill: #fff;
+  -fx-background-color: #449d44;
+  -fx-stroke: #419641;
+}
+
+.btn-warning {
+  -fx-text-fill: #fff;
+  -fx-background-color: #f0ad4e;
+  -fx-stroke: #f0ad4e;
+}
+
+.btn-warning:hover {
+  -fx-text-fill: #fff;
+  -fx-background-color: #ec971f;
+  -fx-stroke: #eb9316;
+}
+
+.btn-danger {
+  -fx-text-fill: #fff;
+  -fx-background-color: #d9534f;
+  -fx-stroke: #d9534f;
+}
+
+.btn-danger:hover {
+  -fx-text-fill: #fff;
+  -fx-background-color: #c9302c;
+  -fx-stroke: #c12e2a;
+}
+
+.alert-success {
+  -fx-background-color: #dff0d8;
+  -fx-padding: 5;
+  -fx-stroke: #d0e9c6;
+  -fx-text-fill: #3c763d;
+}
+
+.alert-warning {
+  -fx-background-color: #fcf8e3;
+  -fx-padding: 5;
+  -fx-stroke: #faf2cc;
+  -fx-text-fill: #8a6d3b;
+}

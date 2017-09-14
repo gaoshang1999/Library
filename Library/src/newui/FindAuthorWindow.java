@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
@@ -36,9 +37,11 @@ public class FindAuthorWindow extends Stage{
 	}
     private FindAuthorWindow () {}
     public void init() {
+    	getIcons().add(new Image("/newui/Library-icon.png"));
 		if( !isInitialized){
 			isInitialized = true;
 	        GridPane grid = new GridPane();
+
 	        grid.setMinWidth(400);
 	        grid.setId("top-container");
 	        grid.setAlignment(Pos.CENTER);
@@ -67,17 +70,24 @@ public class FindAuthorWindow extends Stage{
 
 		   Button findButton = new Button("Find");
 		   Button addButton = new Button("Add to List");
+		   findButton.getStyleClass().add("btn-primary");
+		   addButton.getStyleClass().add("btn-success");
 		   addButton.setDisable(true);
 
 
 		   HBox hBox = new HBox();
+		   hBox.setSpacing(5);
 		   hBox.getChildren().add(addButton);
 		   hBox.getChildren().add(findButton);
 
 		   hBox.setAlignment(Pos.CENTER_RIGHT);
 		   grid.add(hBox, 1, 3);
-		   grid.add(messageBar,  0,4,2,1);
+
+		   HBox messageBox = new HBox();
+		   messageBox.getChildren().add(messageBar);
+		   grid.add(messageBox,  0,4,2,1);
 	        Scene scene = new Scene(grid);
+	        scene.getStylesheets().add( getClass().getResource("Left.css").toExternalForm());
 	        setScene(scene);
 
 
@@ -96,6 +106,7 @@ public class FindAuthorWindow extends Stage{
 					 }else{
 						 addButton.setDisable(false);
 						 messageBar.setFill(Start.Colors.green);
+						 messageBox.getStyleClass().add("alert-success");
 		             	 messageBar.setText("Author Found. Click 'Add to List' \nto add to Author's List");
 					 }
 				 }catch(Exception ex){

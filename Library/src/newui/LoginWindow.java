@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
@@ -36,6 +37,7 @@ public class LoginWindow extends Stage{
 	}
     private LoginWindow () {}
     public void init() {
+    	getIcons().add(new Image("/newui/Library-icon.png"));
 		if( !isInitialized){
 			isInitialized = true;
 	        GridPane grid = new GridPane();
@@ -67,6 +69,7 @@ public class LoginWindow extends Stage{
 	        grid.add(pwBox, 1, 2);
 
 	        Button loginBtn = new Button("Log in");
+	        loginBtn.getStyleClass().add("btn-primary");
 	        HBox hbBtn = new HBox(10);
 	        hbBtn.setAlignment(Pos.BOTTOM_RIGHT);
 	        hbBtn.getChildren().add(loginBtn);
@@ -126,6 +129,7 @@ public class LoginWindow extends Stage{
 	        });
 
 	        Scene scene = new Scene(grid);
+	        scene.getStylesheets().add( getClass().getResource("Left.css").toExternalForm());
 	        setScene(scene);
 
 	        this.show();

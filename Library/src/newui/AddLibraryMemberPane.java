@@ -108,15 +108,16 @@ public class AddLibraryMemberPane {
         grid.add(telephoneTextField, 3, 4);
 
         Button submitBtn = new Button("Submit");
+        submitBtn.getStyleClass().add("btn-primary");
         HBox hbBtn = new HBox(10);
         hbBtn.setAlignment(Pos.BOTTOM_RIGHT);
         hbBtn.getChildren().add(submitBtn);
         grid.add(hbBtn, 3, 9);
 
         HBox messageBox = new HBox(10);
-        messageBox.setAlignment(Pos.BOTTOM_RIGHT);
+        messageBox.setAlignment(Pos.CENTER);
         messageBox.getChildren().add(messageBar);;
-        grid.add(messageBox, 2, 10, 2,1);
+        grid.add(messageBox, 0, 10, 4,1);
 
 
         submitBtn.setOnAction(new EventHandler<ActionEvent>() {
@@ -126,6 +127,7 @@ public class AddLibraryMemberPane {
         				lastNameTextField.getText().equals("") || streetTextField.getText().equals("") || cityTextField.getText().equals("")||
         				stateTextField.getText().equals("") || zipTextField.getText().equals("") || telephoneTextField.getText().equals("")){
         			messageBar.setFill(Start.Colors.red);
+        			messageBox.getStyleClass().add("alert-warning");
         			messageBar.setText("Error! " + "All fields must be non-empty");
         			return;
         		}
@@ -135,6 +137,7 @@ public class AddLibraryMemberPane {
         			Integer.parseInt(memberIdTextField.getText());
         		}catch(Exception ex){
         			messageBar.setFill(Start.Colors.red);
+        			messageBox.getStyleClass().add("alert-warning");
         			messageBar.setText("Error! " + "Member ID must be Numeric");
         			return;
         		}
@@ -143,6 +146,7 @@ public class AddLibraryMemberPane {
         			Integer.parseInt(zipTextField.getText());
         		}catch(Exception ex){
         			messageBar.setFill(Start.Colors.red);
+        			messageBox.getStyleClass().add("alert-warning");
         			messageBar.setText("Error! " + "Zip code must be Numeric");
         			return;
         		}
@@ -151,6 +155,7 @@ public class AddLibraryMemberPane {
         			Integer.parseInt(telephoneTextField.getText());
         		}catch(Exception ex){
         			messageBar.setFill(Start.Colors.red);
+        			messageBox.getStyleClass().add("alert-warning");
         			messageBar.setText("Error! " + "Telephone must be Numeric");
         			return;
         		}
@@ -160,6 +165,7 @@ public class AddLibraryMemberPane {
     			try {
 					if(c.searchMember(memberId.getText()) != null){
 						messageBar.setFill(Start.Colors.red);
+						messageBox.getStyleClass().add("alert-warning");
 						messageBar.setText("Error! " + "Member Id already exists");
 						return;
 					}
@@ -180,16 +186,19 @@ public class AddLibraryMemberPane {
 
         			c.addNewMember(per);
         			messageBar.setFill(Start.Colors.green);
+        			messageBox.getStyleClass().add("alert-success");
              	    messageBar.setText("Member Created successfuly");
              	    //clearFields();
         		} catch(Exception ex) {
         			messageBar.setFill(Start.Colors.red);
+        			messageBox.getStyleClass().add("alert-warning");
         			messageBar.setText("Error! " + ex.getMessage());
         		}
 
         	}
         });
 
+        messageBar.setText("");
 		return grid;
 	}
 }

@@ -10,14 +10,12 @@ import business.Book;
 import business.ControllerInterface;
 import business.NotExistsException;
 import business.SystemController;
-import dataaccess.Auth;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -27,7 +25,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import lesson5.labs.prob1.rulesets.RuleException;
+
 
 public class AddBookPane extends Stage{
 	public static final AddBookPane INSTANCE = new AddBookPane();
@@ -87,7 +85,11 @@ public class AddBookPane extends Stage{
 		grid.add(authorsTextArea, 1,3);
 
 		Button findAuthorBtn = new Button("Find Author");
+		findAuthorBtn.getStyleClass().add("btn-warning");
 		grid.add(findAuthorBtn, 2,3);
+
+		HBox messageBox = new HBox();
+		messageBox.setAlignment(Pos.CENTER);
 
 		findAuthorBtn.setOnAction(new EventHandler<ActionEvent>(){
 
@@ -121,7 +123,8 @@ public class AddBookPane extends Stage{
 			}
 
 		});
-		Button okBtn = new Button("Ok");
+		Button okBtn = new Button("Submit");
+		okBtn.getStyleClass().add("btn-primary");
 		okBtn.setOnAction(new EventHandler<ActionEvent>() {
         	@Override
         	public void handle(ActionEvent e) {
@@ -130,14 +133,16 @@ public class AddBookPane extends Stage{
         				authorsTextArea.getText().equals("") || checkoutTextField.getText().equals("") ||
         				numberOfCopiesTextField.getText().equals("")){
         			messageBar.setFill(Start.Colors.red);
+        			messageBox.getStyleClass().add("alert-warning");
         			messageBar.setText("Error! " + "All fields must be non-empty");
         			return;
         		}
 
         		try{
-        			Integer.parseInt(isbnTextField.getText().trim());
+        			Long.parseLong(isbnTextField.getText().trim());
         		}catch(Exception ex){
         			messageBar.setFill(Start.Colors.red);
+        			messageBox.getStyleClass().add("alert-warning");
         			messageBar.setText("Error! " + "ISBN must be Numeric");
         			return;
         		}
@@ -146,6 +151,7 @@ public class AddBookPane extends Stage{
         			Integer.parseInt(checkoutTextField.getText().trim());
         		}catch(Exception ex){
         			messageBar.setFill(Start.Colors.red);
+        			messageBox.getStyleClass().add("alert-warning");
         			messageBar.setText("Error! " + "Checkout lenght must be Numeric");
         			return;
         		}
@@ -154,14 +160,15 @@ public class AddBookPane extends Stage{
         			Integer.parseInt(numberOfCopiesTextField.getText().trim());
         		}catch(Exception ex){
         			messageBar.setFill(Start.Colors.red);
+        			messageBox.getStyleClass().add("alert-warning");
         			messageBar.setText("Error! " + "Number of copies must be Numeric");
         			return;
         		}
 
+        		//System.out.println(getIsbn().length());
         		if(getIsbn().length() < 10 || getIsbn().length() > 13) {
-
-        		}else {
         			messageBar.setFill(Start.Colors.red);
+        			messageBox.getStyleClass().add("alert-warning");
         			messageBar.setText("ISBN length should be either 10 or 13");
         			return;
         		}
@@ -170,6 +177,7 @@ public class AddBookPane extends Stage{
         			//return;
         		}else {
         			messageBar.setFill(Start.Colors.red);
+        			messageBox.getStyleClass().add("alert-warning");
         			messageBar.setText("ISBN must starts with 978 or 979.");
         			return;
         		}
@@ -178,6 +186,7 @@ public class AddBookPane extends Stage{
         			//return;
         		}else {
         			messageBar.setFill(Start.Colors.red);
+        			messageBox.getStyleClass().add("alert-warning");
         			messageBar.setText("ISBN must starts with 0 or 1.");
         			return;
         		}
@@ -205,15 +214,19 @@ public class AddBookPane extends Stage{
         				sc.addBookCopy(getIsbn());
         			}
         			messageBar.setFill(Start.Colors.green);
+        			messageBox.getStyleClass().add("alert-success");
              	    messageBar.setText("New Book added successfully.");
         		} catch(AuthException ex) {
         			messageBar.setFill(Start.Colors.red);
+        			messageBox.getStyleClass().add("alert-warning");
         			messageBar.setText("Error! Only Admin can do this operation!");
         		} catch(NotExistsException ex) {
         			messageBar.setFill(Start.Colors.red);
+        			messageBox.getStyleClass().add("alert-warning");
         			messageBar.setText("Error! Book is not exists!");
         		}catch(AlreadyExistsException ex){
         			messageBar.setFill(Start.Colors.red);
+        			messageBox.getStyleClass().add("alert-warning");
         			messageBar.setText(ex.getMessage());
         		}
 
@@ -226,7 +239,10 @@ public class AddBookPane extends Stage{
 
 
 
-        grid.add(messageBar,  1,8);
+
+        messageBox.getChildren().add(messageBar);
+        grid.add(messageBox, 0,8,3,1);
+        messageBar.setText("");
 
 		return grid;
 	}
