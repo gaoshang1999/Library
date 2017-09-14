@@ -27,7 +27,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import lesson5.labs.prob1.rulesets.RuleException;
 
 public class AddBookPane extends Stage{
 	public static final AddBookPane INSTANCE = new AddBookPane();
