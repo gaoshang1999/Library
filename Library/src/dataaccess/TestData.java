@@ -63,12 +63,17 @@ public class TestData {
 	public static void main(String[] args) {
 		TestData td = new TestData();
 		td.bookData();
+		td.AuthorData();
 		td.libraryMemberData();
 		td.userData();
 		td.createCheckoutsForLibraryMembers();
 		DataAccess da = new DataAccessFacade();
 		System.out.println(da.readBooksMap());
 		System.out.println(da.readUserMap());
+	}
+	private void AuthorData() {
+		// TODO Auto-generated method stub
+		DataAccessFacade.loadAuthorMap(allAuthors);
 	}
 	///create books
 	public void bookData() {

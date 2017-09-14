@@ -6,23 +6,20 @@ import java.io.Serializable;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import business.Author;
 import business.Book;
-import business.BookCopy;
 import business.LibraryMember;
 import business.NotExistsException;
-import dataaccess.DataAccessFacade.StorageType;
-import library.domain.CheckoutRecordEntry;
 
 
 public class DataAccessFacade implements DataAccess {
 
 	enum StorageType {
-		BOOKS, MEMBERS, USERS;
+		BOOKS, MEMBERS, USERS, AUTHORS;
 	}
 
 	public static final String OUTPUT_DIR = System.getProperty("user.dir")
@@ -36,6 +33,14 @@ public class DataAccessFacade implements DataAccess {
 		mems.put(memberId, member);
 		saveToStorage(StorageType.MEMBERS, mems);
 	}
+
+	public void saveNewAuthor(Author author) {
+		HashMap<String, Author> authors = readAuthorMap();
+		String authorName = author.getName();
+		authors.put(authorName, author);
+		saveToStorage(StorageType.AUTHORS, authors);
+	}
+
 
 	@SuppressWarnings("unchecked")
 	public  HashMap<String,Book> readBooksMap() {
@@ -83,6 +88,14 @@ public class DataAccessFacade implements DataAccess {
 		HashMap<String, LibraryMember> members = new HashMap<String, LibraryMember>();
 		memberList.forEach(member -> members.put(member.getMemberId(), member));
 		saveToStorage(StorageType.MEMBERS, members);
+	}
+
+
+
+	static void loadAuthorMap(List<Author> authorList) {
+		HashMap<String, Author> authors = new HashMap<String, Author>();
+		authorList.forEach(author -> authors.put(author.getName(), author));
+		saveToStorage(StorageType.AUTHORS, authors);
 	}
 
 	static void saveToStorage(StorageType type, Object ob) {
@@ -176,6 +189,23 @@ public class DataAccessFacade implements DataAccess {
 	public Book searchBook(String isbn) {
 		Map<String,Book> booksHashMap = readBooksMap();
 		return booksHashMap.get(isbn);
+	}
+
+	@Override
+	public Author searchAuthor(Author auth) throws NotExistsException {
+		// TODO Auto-generated method stub
+		Map<String, Author> authorsHashMap = readAuthorMap();
+		Author author = authorsHashMap.get(auth.getName());
+		if(author == null)
+			throw new NotExistsException("Author " + author.getName() + " doesn't exists.");
+		return author;
+	}
+
+	@Override
+	public HashMap<String, Author> readAuthorMap() {
+		// TODO Auto-generated method stub
+		return (HashMap<String,Author>) readFromStorage(StorageType.AUTHORS);
+
 	}
 
 
