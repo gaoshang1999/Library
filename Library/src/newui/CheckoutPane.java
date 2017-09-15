@@ -178,7 +178,7 @@ public class CheckoutPane {
 
         messageBox.getChildren().add(messageBar);
 
-        grid.add(messageBox, 0, 4,5,1);
+        grid.add(messageBox, 0,5,5,1);
 
         messageBar.setText("");
 		return grid;
