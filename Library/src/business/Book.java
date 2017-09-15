@@ -72,7 +72,10 @@ final public class Book implements Serializable {
 
 	public BookCopy getFirstAvailableCopy() throws NoSuchElementException {
 		if (copies == null) {
-			throw new NoSuchElementException();
+			throw new NoSuchElementException("No Copy available.");
+		}
+		else if(!isAvailable()){
+			throw new NoSuchElementException("No Copy available.");
 		}
 		SortedSet<BookCopy> availableCopies = copies.stream().filter(c -> c.isAvailable())
 				.collect(Collectors.toCollection(() -> new TreeSet<BookCopy>()));

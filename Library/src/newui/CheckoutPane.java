@@ -82,7 +82,7 @@ public class CheckoutPane {
 
         		} catch (NotExistsException e1) {
 					// TODO Auto-generated catch block
-        			setMessageBar("ID doesn't exist.",Start.Colors.red);
+        			setMessageBar(e1.getMessage(),Start.Colors.red);
 				}
         	}
         });
@@ -153,10 +153,10 @@ public class CheckoutPane {
 					table.getItems().add(data);
 					messageBox.getStyleClass().add("alert-success");
              	   setMessageBar("Book has been checked out.",Start.Colors.green);
-        		} catch (NotExistsException e1) {
+        		} catch (Exception e1) {
 					// TODO Auto-generated catch block
         			messageBox.getStyleClass().add("alert-warning");
-             	   setMessageBar("Book or member ID doesn't exist.",Start.Colors.red);
+             	   setMessageBar(e1.getMessage(),Start.Colors.red);
 				}
         	}
         });
