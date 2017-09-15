@@ -87,7 +87,7 @@ public class SystemController implements ControllerInterface {
 		DataAccess da = new DataAccessFacade();
 		HashMap<String, Book> map = da.readBooksMap();
 		if (!map.containsKey(isbn)) {
-			throw new NotExistsException();
+			throw new NotExistsException("Book is not exist");
 		}
 
 		Book book = map.get(isbn);
@@ -103,7 +103,7 @@ public class SystemController implements ControllerInterface {
 		// TODO searchMember -> searchBook -> add entry
 		DataAccess da = new DataAccessFacade();
 		CheckoutTableData retVal = new CheckoutTableData();
-		try {
+		//try {
 			LibraryMember member = da.searchMember(memberId);
 			Book book = da.searchBook(isbn);
 			BookCopy bookCopy = book.getFirstAvailableCopy();
@@ -119,12 +119,13 @@ public class SystemController implements ControllerInterface {
 			da.saveNewMember(member);
 			da.saveBook(book);
 			return retVal;
-		} catch (NoSuchElementException e) {
-			throw new NotExistsException();
-		}
-		catch (NullPointerException e) {
-			throw new NotExistsException();
-		}
+		//}
+//		catch (NoSuchElementException e) {
+//			throw new NotExistsException();
+//		}
+//		catch (NullPointerException e) {
+//			throw new NotExistsException();
+//		}
 	}
 
 	// Not sure if we are going to use this.
@@ -195,7 +196,7 @@ public class SystemController implements ControllerInterface {
 		}
 		return retVal;
 	}
-	
+
 	@Override
 	public List<CheckoutTableData> readAllCheckoutsWithOverdue() throws NotExistsException{
 		DataAccess da = new DataAccessFacade();
@@ -203,11 +204,11 @@ public class SystemController implements ControllerInterface {
 
 		List<CheckoutTableData> allCheckOut = readAllCheckouts();
 
-		for(CheckoutTableData ck : allCheckOut){			
+		for(CheckoutTableData ck : allCheckOut){
             if(LocalDate.now().isAfter(ck.getDueDate())){
             	ck.setOverdue(true);
             }
-			retVal.add(ck);			
+			retVal.add(ck);
 		}
 		if(retVal.isEmpty()) {
 			throw new NotExistsException();
@@ -241,7 +242,7 @@ public class SystemController implements ControllerInterface {
 		DataAccess da = new DataAccessFacade();
 		da.saveNewAuthor(auth);
   }
-  
+
 	public void printCheckoutTable(TableView table) {
 		ObservableList<CheckoutTableData> tableData = table.getItems();
 		System.out.println(String.format("%15s \t %15s \t %15s \t %15s \t %15s","Member ID","ISBN","Copy Number", "Checkout Date", "Due Date"));

@@ -180,14 +180,17 @@ public class DataAccessFacade implements DataAccess {
 		Map<String,LibraryMember> membersHashMap = readMemberMap();
 		LibraryMember member = membersHashMap.get(memberId);
 		if(member == null)
-			throw new NotExistsException();
+			throw new NotExistsException("Member is not exist");
 		return member;
 	}
 
 
 	@Override
-	public Book searchBook(String isbn) {
+	public Book searchBook(String isbn) throws NotExistsException{
 		Map<String,Book> booksHashMap = readBooksMap();
+		if(!booksHashMap.containsKey(isbn)){
+			throw new NotExistsException("Book is not exist");
+		}
 		return booksHashMap.get(isbn);
 	}
 
