@@ -55,7 +55,11 @@ public class AddBookCopyPane {
         isbn = new TextField();
 		grid.add(isbn, 1,1);
 
-		Button okBtn = new Button("Ok");
+		HBox messageBox = new HBox();
+		messageBox.setAlignment(Pos.CENTER);
+
+		Button okBtn = new Button("Submit");
+		okBtn.getStyleClass().add("btn-primary");
 		okBtn.setOnAction(new EventHandler<ActionEvent>() {
         	@Override
         	public void handle(ActionEvent e) {
@@ -63,12 +67,15 @@ public class AddBookCopyPane {
         			ControllerInterface c = new SystemController();
         			int numOfCopy = c.addBookCopy(getIsbn());
         			messageBar.setFill(Start.Colors.green);
+        			messageBox.getStyleClass().add("alert-success");
              	    messageBar.setText("New copy added successfully.\nThe book has " + numOfCopy + " copies now!");
         		} catch(AuthException ex) {
         			messageBar.setFill(Start.Colors.red);
+        			messageBox.getStyleClass().add("alert-warning");
         			messageBar.setText("Error! Only Admin can do this operation!");
         		} catch(NotExistsException ex) {
         			messageBar.setFill(Start.Colors.red);
+        			messageBox.getStyleClass().add("alert-warning");
         			messageBar.setText("Error! Book is not exists!");
         		}
         	}
@@ -79,7 +86,8 @@ public class AddBookCopyPane {
         grid.add(hOk, 3, 1);
 
         messageBar = new Text();
-        grid.add(messageBar, 1, 2, 2, 1);
+        messageBox.getChildren().add(messageBar);
+        grid.add(messageBox, 1, 2, 3, 1);
 
 		return grid;
 	}

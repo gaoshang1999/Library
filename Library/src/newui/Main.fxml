@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="389.99995585936995" prefWidth="781.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+<AnchorPane id="AnchorPane" prefHeight="389.99995585936995" minWidth="700" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
   <children>
     <AnchorPane layoutX="0.0" layoutY="0.0" opacity="1.0" prefHeight="390.0" prefWidth="169.0" styleClass="left">
       <children>
@@ -21,29 +21,29 @@
             </Label>
             <VBox id="VBox" alignment="CENTER" layoutX="14.0" layoutY="75.0" spacing="5.0">
               <children>
-                <Button id="bookBtn" mnemonicParsing="false" opacity="1.0" prefWidth="141.0" text="List All Books" textFill="RED" textOverrun="CENTER_ELLIPSIS" />
-                <Button id="memBtn" mnemonicParsing="false" opacity="1.0" prefWidth="141.0" text="List All Members" textFill="RED" textOverrun="CENTER_ELLIPSIS" />
-                <Button id="addAuthorBtn" mnemonicParsing="false" opacity="1.0" prefWidth="141.0" text="Add Author" textFill="RED" textOverrun="CENTER_ELLIPSIS" />
-                <Button id="addBookBtn" mnemonicParsing="false" opacity="1.0" prefWidth="141.0" text="Add Book" textFill="RED" textOverrun="CENTER_ELLIPSIS" />
-                <Button id="addBookCopyBtn" mnemonicParsing="false" opacity="1.0" prefWidth="141.0" text="Add Book Copy" textFill="RED" textOverrun="CENTER_ELLIPSIS" />
-                <Button id="addLibraryMemberBtn" mnemonicParsing="false" opacity="1.0" prefWidth="141.0" text="Add Library Member" textFill="RED" textOverrun="CENTER_ELLIPSIS" />
-                <Button id="checkOutBtn" mnemonicParsing="false" opacity="1.0" prefWidth="141.0" text="Check Out" textFill="RED" textOverrun="CENTER_ELLIPSIS" />
-                <Button id="isOverduetBtn" mnemonicParsing="false" opacity="1.0" prefWidth="141.0" text="Is Overdue" textFill="RED" textOverrun="CENTER_ELLIPSIS" />
+                <Button id="bookBtn" StyleClass="btn-secondary" mnemonicParsing="false" opacity="1.0" prefWidth="141.0" text="List All Books" textFill="RED" textOverrun="CENTER_ELLIPSIS" />
+                <Button id="memBtn" StyleClass="btn-secondary" mnemonicParsing="false" opacity="1.0" prefWidth="141.0" text="List All Members" textFill="RED" textOverrun="CENTER_ELLIPSIS" />
+                <Button id="addAuthorBtn" StyleClass="btn-secondary" mnemonicParsing="false" opacity="1.0" prefWidth="141.0" text="Add Author" textFill="RED" textOverrun="CENTER_ELLIPSIS" />
+                <Button id="addBookBtn" StyleClass="btn-secondary" mnemonicParsing="false" opacity="1.0" prefWidth="141.0" text="Add Book" textFill="RED" textOverrun="CENTER_ELLIPSIS" />
+                <Button id="addBookCopyBtn" StyleClass="btn-secondary" mnemonicParsing="false" opacity="1.0" prefWidth="141.0" text="Add Book Copy" textFill="RED" textOverrun="CENTER_ELLIPSIS" />
+                <Button id="addLibraryMemberBtn" StyleClass="btn-secondary" mnemonicParsing="false" opacity="1.0" prefWidth="141.0" text="Add Library Member" textFill="RED" textOverrun="CENTER_ELLIPSIS" />
+                <Button id="checkOutBtn" StyleClass="btn-secondary" mnemonicParsing="false" opacity="1.0" prefWidth="141.0" text="Check Out" textFill="RED" textOverrun="CENTER_ELLIPSIS" />
+                <Button id="isOverduetBtn" StyleClass="btn-secondary" mnemonicParsing="false" opacity="1.0" prefWidth="141.0" text="Is Overdue" textFill="RED" textOverrun="CENTER_ELLIPSIS" />
               </children>
             </VBox>
-            <Button id="logoutBtn" layoutX="14.0" layoutY="355.0" mnemonicParsing="false" opacity="1.0" prefWidth="141.0" text="Log Out" textFill="RED" textOverrun="CENTER_ELLIPSIS" />
+            <Button id="logoutBtn" StyleClass="btn-danger" layoutX="14.0" layoutY="355.0" mnemonicParsing="false" opacity="1.0" prefWidth="141.0" text="Log Out" textFill="RED" textOverrun="CENTER_ELLIPSIS" />
           </children>
         </Pane>
       </children>
       <stylesheets>
-        <URL value="@left.css" />
+
       </stylesheets>
     </AnchorPane>
     <GridPane id="main" alignment="CENTER" layoutX="169.0" layoutY="0.0" prefHeight="390.0" prefWidth="582.0">
       <children>
         <HBox id="HBox" alignment="CENTER" spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
           <children>
-            <Text fill="#0029ff" scaleX="1.0126897847576888" scaleY="0.8771400236074804" stroke="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome" textAlignment="CENTER">
+            <Text fill="#0029ff" scaleX="1.0126897847576888" scaleY="0.8771400236074804" stroke="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="" textAlignment="CENTER">
               <font>
                 <Font name="System Bold" size="18.0" />
               </font>

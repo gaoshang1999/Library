@@ -17,6 +17,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -38,6 +39,7 @@ public class MainWindow extends Stage {
 	 }
 
 	 public void init() throws Exception {
+
         Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
 
         Scene scene = new Scene(root);
@@ -144,6 +146,7 @@ public class MainWindow extends Stage {
 		});
 
 //	        bookBtn.fire();
+        scene.getStylesheets().add( getClass().getResource("Left.css").toExternalForm());
         this.setScene(scene);
 
         //https://stackoverflow.com/questions/9861178/javafx-primarystage-remove-windows-borders

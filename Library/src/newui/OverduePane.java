@@ -60,6 +60,7 @@ public class OverduePane {
         TextField searchTextField = new TextField();
 
 		Button searchBtn = new Button("Search");
+		searchBtn.getStyleClass().add("btn-warning");
 		searchBtn.setOnAction(new EventHandler<ActionEvent>() {
         	@Override
         	public void handle(ActionEvent e) {

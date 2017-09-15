@@ -105,15 +105,16 @@ public class AddAuthorPane extends Stage{
 	   grid.add(telephoneTextField, 3, 4);
 
 	   Button submitBtn = new Button("Submit");
+	   submitBtn.getStyleClass().add("btn-primary");
        HBox hbBtn = new HBox(10);
        hbBtn.setAlignment(Pos.BOTTOM_RIGHT);
        hbBtn.getChildren().add(submitBtn);
        grid.add(hbBtn, 3, 5);
 
        HBox messageBox = new HBox(10);
-       messageBox.setAlignment(Pos.BOTTOM_RIGHT);
+       messageBox.setAlignment(Pos.CENTER	);
        messageBox.getChildren().add(messageBar);;
-       grid.add(messageBox, 2, 6, 2,1);
+       grid.add(messageBox, 0, 6, 4,1);
 
 
 
@@ -126,6 +127,7 @@ public class AddAuthorPane extends Stage{
        				cityTextField.getText().trim().equals("")||	stateTextField.getText().trim().equals("") ||
        				zipTextField.getText().trim().equals("") || telephoneTextField.getText().trim().equals("")){
        			messageBar.setFill(Start.Colors.red);
+       			messageBox.getStyleClass().add("alert-warning");
        			messageBar.setText("Error! " + "All fields must be non-empty");
        			return;
        		}
@@ -134,6 +136,7 @@ public class AddAuthorPane extends Stage{
        			Integer.parseInt(zipTextField.getText().trim());
        		}catch(Exception ex){
        			messageBar.setFill(Start.Colors.red);
+       			messageBox.getStyleClass().add("alert-warning");
        			messageBar.setText("Error! " + "Zip code must be Numeric");
        			return;
        		}
@@ -142,6 +145,7 @@ public class AddAuthorPane extends Stage{
        			Integer.parseInt(telephoneTextField.getText().trim());
        		}catch(Exception ex){
        			messageBar.setFill(Start.Colors.red);
+       			messageBox.getStyleClass().add("alert-warning");
        			messageBar.setText("Error! " + "Telephone must be Numeric");
        			return;
        		}
@@ -162,10 +166,12 @@ public class AddAuthorPane extends Stage{
        			c.addNewAuthor(author);
 
        			messageBar.setFill(Start.Colors.green);
+       			messageBox.getStyleClass().add("alert-success");
             	messageBar.setText("Author Created successfuly");
             	    //clearFields();
        		} catch(Exception ex) {
        			messageBar.setFill(Start.Colors.red);
+       			messageBox.getStyleClass().add("alert-warning");
        			messageBar.setText("Error! " + ex.getMessage());
        		}
 
@@ -174,7 +180,7 @@ public class AddAuthorPane extends Stage{
 
 
 
-
+       messageBar.setText("");
 		return grid;
 	}
 }
