@@ -1,7 +1,8 @@
-package newui;
+package ui;
 
 import java.util.List;
 
+import business.CheckoutTableData;
 import business.ControllerInterface;
 import business.NotExistsException;
 import business.SystemController;
@@ -23,7 +24,6 @@ import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import library.domain.CheckoutTableData;
 
 public class CheckoutPane {
 	public static final CheckoutPane INSTANCE = new CheckoutPane();

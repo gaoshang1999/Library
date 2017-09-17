@@ -6,7 +6,6 @@ import java.time.LocalDate;
 
 import dataaccess.DataAccess;
 import dataaccess.DataAccessFacade;
-import library.domain.CheckoutRecordEntry;
 
 final public class LibraryMember extends Person implements Serializable {
 	private String memberId;

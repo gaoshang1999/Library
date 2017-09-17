@@ -13,8 +13,6 @@ import dataaccess.DataAccessFacade;
 import dataaccess.User;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;
-import library.domain.CheckoutRecordEntry;
-import library.domain.CheckoutTableData;
 
 public class SystemController implements ControllerInterface {
 	public static Auth currentAuth = null;

@@ -1,4 +1,4 @@
-package library.domain;
+package business;
 
 import java.time.LocalDate;
 

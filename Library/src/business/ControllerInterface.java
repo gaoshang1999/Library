@@ -7,8 +7,6 @@ import business.Book;
 import dataaccess.DataAccess;
 import dataaccess.DataAccessFacade;
 import javafx.scene.control.TableView;
-import library.domain.CheckoutRecordEntry;
-import library.domain.CheckoutTableData;
 
 public interface ControllerInterface {
 	public void login(String id, String password) throws LoginException;

@@ -1,4 +1,4 @@
-package newui;
+package ui;
 
 import business.Address;
 import business.AlreadyExistsException;

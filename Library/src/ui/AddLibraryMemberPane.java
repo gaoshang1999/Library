@@ -1,4 +1,4 @@
-package newui;
+package ui;
 
 import business.Address;
 import business.ControllerInterface;
@@ -19,7 +19,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import newui.Start;
+import ui.Start;
 
 public class AddLibraryMemberPane {
 	public static final AddLibraryMemberPane INSTANCE = new AddLibraryMemberPane();

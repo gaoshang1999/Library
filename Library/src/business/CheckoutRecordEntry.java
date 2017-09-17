@@ -1,9 +1,7 @@
-package library.domain;
+package business;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-
-import business.BookCopy;
 
 public class CheckoutRecordEntry implements Serializable {
 	private static final long serialVersionUID = -6501004438229428945L;
