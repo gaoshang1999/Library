@@ -47,7 +47,8 @@ public class AllBooksPane  {
         TableColumn isbnCol = new TableColumn("ISBN");
         TableColumn titleCol = new TableColumn("Title");
         TableColumn maxCheckoutLengthCol = new TableColumn("Max Checkout Length");
-        TableColumn copyNumberCol = new TableColumn("Copy Number");
+        TableColumn copyNumberCol = new TableColumn("Total Number of Copy");
+        TableColumn avalibleCol = new TableColumn("Avalible Number of Copy");
         TableColumn authorsCol = new TableColumn("Authors");
 
 
@@ -60,11 +61,13 @@ public class AllBooksPane  {
                 new PropertyValueFactory<>("maxCheckoutLength"));
         copyNumberCol.setCellValueFactory(
                 new PropertyValueFactory<>("numCopies"));
+        avalibleCol.setCellValueFactory(
+                new PropertyValueFactory<>("avalibleNumerOfCopy"));
         authorsCol.setCellValueFactory(
                 new PropertyValueFactory<>("authors"));
 
         table.getColumns().clear();
-        table.getColumns().addAll(isbnCol, titleCol, maxCheckoutLengthCol, copyNumberCol, authorsCol);
+        table.getColumns().addAll(isbnCol, titleCol, maxCheckoutLengthCol, copyNumberCol, avalibleCol, authorsCol);
         grid.add(table, 0, 1, 2, 1);
 
         ControllerInterface sc = new SystemController();

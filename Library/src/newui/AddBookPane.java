@@ -193,11 +193,7 @@ public class AddBookPane extends Stage{
 
         		try {
         			ControllerInterface sc = new SystemController();
-
-
-    				if (sc.allBookIds().contains(getIsbn()) == true){
-    					throw new AlreadyExistsException("Error! Book already exists!");
-    				}
+    				
         			//int numOfCopy = c.addBookCopy(getIsbn());
         			String[] split = authorsTextArea.getText().trim().split(",");
         			List<Author> authors = new ArrayList<Author>();
@@ -216,10 +212,6 @@ public class AddBookPane extends Stage{
         			messageBar.setFill(Start.Colors.green);
         			messageBox.getStyleClass().add("alert-success");
              	    messageBar.setText("New Book added successfully.");
-        		} catch(AuthException ex) {
-        			messageBar.setFill(Start.Colors.red);
-        			messageBox.getStyleClass().add("alert-warning");
-        			messageBar.setText("Error! Only Admin can do this operation!");
         		} catch(NotExistsException ex) {
         			messageBar.setFill(Start.Colors.red);
         			messageBox.getStyleClass().add("alert-warning");

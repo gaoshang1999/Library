@@ -52,13 +52,16 @@ public class MainWindow extends Stage {
         Button addBookCopyBtn = (Button )root.lookup("#addBookCopyBtn");
         Button addLibraryMemberBtn = (Button )root.lookup("#addLibraryMemberBtn");
         Button checkOutBtn = (Button )root.lookup("#checkOutBtn");
+        Button isOverduetBtn = (Button )root.lookup("#isOverduetBtn");
         Button logoutBtn = (Button )root.lookup("#logoutBtn");
 
-        Button isOverduetBtn = (Button )root.lookup("#isOverduetBtn");
 
         if(SystemController.currentAuth == Auth.ADMIN){
         	VBox.getChildren().remove(checkOutBtn);
-        }else if(SystemController.currentAuth == Auth.LIBRARIAN){
+        	VBox.getChildren().remove(isOverduetBtn);
+        }else if(SystemController.currentAuth == Auth.LIBRARIAN){      
+        	VBox.getChildren().remove(addAuthorBtn);
+        	VBox.getChildren().remove(addBookBtn);
         	VBox.getChildren().remove(addBookCopyBtn);
         	VBox.getChildren().remove(addLibraryMemberBtn);
         }

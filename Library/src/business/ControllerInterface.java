@@ -15,9 +15,9 @@ public interface ControllerInterface {
 	public List<String> allMemberIds();
 	public List<String> allBookIds();
 
-	public void addNewMember(LibraryMember per);
+	public void addNewMember(LibraryMember per)  throws AlreadyExistsException;
 	public void addNewAuthor(Author auth);
-	public int addBookCopy(String isbn) throws AuthException, NotExistsException;
+	public int addBookCopy(String isbn) throws NotExistsException;
 
 	public CheckoutTableData checkoutBook(String memberId,String isbn) throws NotExistsException;
 	public List<CheckoutTableData> readAllCheckouts();
@@ -29,10 +29,9 @@ public interface ControllerInterface {
 	public List<Book> allBooks();
 	public List<LibraryMember> allLibraryMembers();
 
-
 	public LibraryMember searchMember(String memberId) throws NotExistsException;
 	public Author searchAuthor(Author auth);
-	public void addBook(Book newBook);
+	public void addBook(Book newBook) throws AlreadyExistsException;
 	public void printCheckoutTable(TableView table);
 
 }

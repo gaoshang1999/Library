@@ -90,6 +90,12 @@ final public class Book implements Serializable {
 		else
 			return false;
 	}
+	
+	public int getAvalibleNumerOfCopy() {
+		SortedSet<BookCopy> availableCopies = copies.stream().filter(c -> c.isAvailable())
+				.collect(Collectors.toCollection(() -> new TreeSet<BookCopy>()));
+		return availableCopies.size() ;
+	}
 
 	@Override
 	public String toString() {

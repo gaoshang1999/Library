@@ -39,7 +39,7 @@ public class AddBookCopyPane {
 	public Pane initPane() {
 		GridPane grid = new GridPane();
 		grid.setId("top-container");
-		grid.setAlignment(Pos.TOP_LEFT);
+		grid.setAlignment(Pos.TOP_CENTER);
         grid.setHgap(10);
         grid.setVgap(10);
         grid.setPadding(new Insets(25, 25, 25, 25));
@@ -69,10 +69,6 @@ public class AddBookCopyPane {
         			messageBar.setFill(Start.Colors.green);
         			messageBox.getStyleClass().add("alert-success");
              	    messageBar.setText("New copy added successfully.\nThe book has " + numOfCopy + " copies now!");
-        		} catch(AuthException ex) {
-        			messageBar.setFill(Start.Colors.red);
-        			messageBox.getStyleClass().add("alert-warning");
-        			messageBar.setText("Error! Only Admin can do this operation!");
         		} catch(NotExistsException ex) {
         			messageBar.setFill(Start.Colors.red);
         			messageBox.getStyleClass().add("alert-warning");

@@ -19,7 +19,7 @@
    Use case 2 - See the Check Out menu. On the right page, thers is a print button.
    Use case 3 - See the Is Overdue menu.
 
-3, what's we also do something else.
+3, We also do something else besides the above use cases.
    a - List All Book - See List All Books menu.
    b - List All Members - See List All Members menu.
    c - Add new author - See Add Author menu.
@@ -38,7 +38,7 @@
 6, Tools used during project
    StarUML - design
    Eclipse - develop
-   Github - source control
+   Github - source code control
 
 
 

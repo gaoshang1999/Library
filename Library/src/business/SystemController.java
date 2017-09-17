@@ -67,23 +67,23 @@ public class SystemController implements ControllerInterface {
 	}
 
 	@Override
-	public void addNewMember(LibraryMember per){
+	public void addNewMember(LibraryMember per) throws AlreadyExistsException{
 		DataAccess da = new DataAccessFacade();
+		if(da.readMemberMap().containsKey(per.getMemberId())) {
+			throw new AlreadyExistsException("Error! Library Member already exists!");
+		}
 		da.saveNewMember(per);
 	}
 
-	public void addBook(Book xx){
+	public void addBook(Book b) throws AlreadyExistsException{
 		DataAccess da = new DataAccessFacade();
-
-		da.saveBook(xx);
+		if (da.readBooksMap().containsKey(b.getIsbn())){
+			throw new AlreadyExistsException("Error! Book already exists!");
+		}
+		da.saveBook(b);
 	}
 	@Override
-	public int addBookCopy(String isbn) throws AuthException, NotExistsException {
-		//System.out.println(SystemController.currentAuth);
-		if (null == SystemController.currentAuth || SystemController.currentAuth == Auth.LIBRARIAN) {
-			throw new AuthException();
-		}
-
+	public int addBookCopy(String isbn) throws NotExistsException {
 		DataAccess da = new DataAccessFacade();
 		HashMap<String, Book> map = da.readBooksMap();
 		if (!map.containsKey(isbn)) {

@@ -71,9 +71,6 @@ public class AddBookCopyWindow extends Stage implements LibWindow {
         			int numOfCopy = c.addBookCopy(getIsbn());
         			messageBar.setFill(Start.Colors.green);
              	    messageBar.setText("New copy added successfully.\nThe book has " + numOfCopy + " copies now!");
-        		} catch(AuthException ex) {
-        			messageBar.setFill(Start.Colors.red);
-        			messageBar.setText("Error! Only Admin can do this operation!");
         		} catch(NotExistsException ex) {
         			messageBar.setFill(Start.Colors.red);
         			messageBar.setText("Error! Book is not exists!");
