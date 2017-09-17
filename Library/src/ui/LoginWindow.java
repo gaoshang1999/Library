@@ -37,7 +37,7 @@ public class LoginWindow extends Stage{
 	}
     private LoginWindow () {}
     public void init() {
-    	getIcons().add(new Image("/newui/Library-icon.png"));
+    	getIcons().add(new Image("/ui/Library-icon.png"));
 		if( !isInitialized){
 			isInitialized = true;
 	        GridPane grid = new GridPane();

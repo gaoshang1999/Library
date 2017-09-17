@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import library.domain.CheckoutRecordEntry;
+
 public class CheckoutRecord implements Serializable {
 	private static final long serialVersionUID = 1268801666336692083L;
 

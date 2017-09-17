@@ -5,7 +5,7 @@
 }
 
 .root, GridPane{
-	-fx-background-image: url('/newui/abstract.jpg');
+	-fx-background-image: url('/ui/abstract.jpg');
 	-fx-background-size: stretch;
 }
 

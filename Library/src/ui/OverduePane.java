@@ -2,7 +2,6 @@ package ui;
 
 import java.util.List;
 
-import business.CheckoutTableData;
 import business.ControllerInterface;
 import business.NotExistsException;
 import business.SystemController;
@@ -23,6 +22,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import library.domain.CheckoutTableData;
 import ui.Start;
 
 public class OverduePane {

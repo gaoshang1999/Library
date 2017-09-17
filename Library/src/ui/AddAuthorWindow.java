@@ -23,7 +23,7 @@ public class AddAuthorWindow extends Stage{
 	}
     private AddAuthorWindow () {}
     public void init() {
-    	getIcons().add(new Image("/newui/Library-icon.png"));
+    	getIcons().add(new Image("/ui/Library-icon.png"));
 		if( !isInitialized){
 			isInitialized = true;
 	        GridPane grid = (GridPane) AddAuthorPane.INSTANCE.initPane();

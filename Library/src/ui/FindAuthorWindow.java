@@ -37,7 +37,7 @@ public class FindAuthorWindow extends Stage{
 	}
     private FindAuthorWindow () {}
     public void init() {
-    	getIcons().add(new Image("/newui/Library-icon.png"));
+    	getIcons().add(new Image("/ui/Library-icon.png"));
 		if( !isInitialized){
 			isInitialized = true;
 	        GridPane grid = new GridPane();

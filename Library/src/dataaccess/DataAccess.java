@@ -5,10 +5,10 @@ import java.util.List;
 
 import business.Author;
 import business.Book;
-import business.CheckoutRecordEntry;
 import business.LibraryMember;
 import business.NotExistsException;
 import dataaccess.DataAccessFacade.StorageType;
+import library.domain.CheckoutRecordEntry;
 
 public interface DataAccess {
 	public HashMap<String,Book> readBooksMap();
