@@ -174,7 +174,6 @@ public class SystemController implements ControllerInterface {
 		List<CheckoutTableData> retVal = new ArrayList<>();
 
 		List<CheckoutTableData> allCheckOut = readAllCheckouts();
-//		HashMap<String, Book> bookMap = da.readBooksMap();
 
 		for(CheckoutTableData ck : allCheckOut){
 			if( ck.getIsbn().equals(isbn)){
@@ -184,7 +183,28 @@ public class SystemController implements ControllerInterface {
 				retVal.add(ck);
 			}
 		}
+		if(retVal.isEmpty()) {
+			throw new NotExistsException();
+		}
+		return retVal;
+	}
+	
+	@Override
+	public List<CheckoutTableData> readAllCheckoutsWithOverdue() throws NotExistsException{
+		DataAccess da = new DataAccessFacade();
+		List<CheckoutTableData> retVal = new ArrayList<>();
 
+		List<CheckoutTableData> allCheckOut = readAllCheckouts();
+
+		for(CheckoutTableData ck : allCheckOut){			
+            if(LocalDate.now().isAfter(ck.getDueDate())){
+            	ck.setOverdue(true);
+            }
+			retVal.add(ck);			
+		}
+		if(retVal.isEmpty()) {
+			throw new NotExistsException();
+		}
 		return retVal;
 	}
 

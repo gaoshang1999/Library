@@ -75,7 +75,7 @@ public class OverduePane {
         			}
         			else
         			{
-        				List<CheckoutTableData> tableData = sc.readAllCheckouts();
+        				List<CheckoutTableData> tableData = sc.readAllCheckoutsWithOverdue();
         				table.setItems(FXCollections.observableArrayList(tableData));
     					messageBar.setFill(Start.Colors.green);
                  	    messageBar.setText("All Checkouts has been retrieved");
